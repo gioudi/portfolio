@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-import Timeline from "@/components/Timeline.vue";
+import Timeline from "../components/TimeLineC.vue";
 import Projects from "@/components/Projects.vue";
 import ContactForm from "@/components/ContactForm.vue";
 </script>
