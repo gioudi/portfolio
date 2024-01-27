@@ -9,7 +9,7 @@ import ScrollReveal from "vue-scroll-reveal";
 import VerticalTimeline from "vue-vertical-timeline";
 import VerticalTimelineItem from "vue-vertical-timeline-item";
 import "./styles/global.scss";
-
+import VueCarousel from "vue-carousel";
 const app = createApp(App);
 
 app.use(createPinia());
@@ -35,4 +35,6 @@ app.directive("scroll-reveal", {
     ScrollReveal().reveal(el, binding.value);
   },
 });
+
+app.use(VueCarousel);
 app.mount("#app");
