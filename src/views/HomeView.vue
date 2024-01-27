@@ -4,6 +4,7 @@
     <Timeline />
     <ProjectsLine />
     <ContactForm />
+    <FooterLine />
   </div>
 </template>
 
@@ -11,4 +12,5 @@
 import Timeline from "../components/TimeLineC.vue";
 import ProjectsLine from "@/components/ProjectsLine.vue";
 import ContactForm from "@/components/ContactForm.vue";
+import FooterLine from "@/components/FooterLine.vue";
 </script>

@@ -18,8 +18,36 @@ app.use(router);
 const i18n = createI18n({
   locale: "en",
   messages: {
-    en: {},
-    es: {},
+    en: {
+      footer: {
+        personalInfo: "Personal Information",
+        name: "Your Name",
+        location: "Your Location",
+        socialMedia: "Social Media",
+        linkedIn: "LinkedIn",
+        twitter: "Twitter",
+        contact: "Contact Information",
+        email: "Email",
+        phone: "Phone",
+        portfolio: "Portfolio Information",
+        frontendDeveloper: "Frontend Developer",
+      },
+    },
+    es: {
+      footer: {
+        personalInfo: "Personal Information",
+        name: "Your Name",
+        location: "Your Location",
+        socialMedia: "Social Media",
+        linkedIn: "LinkedIn",
+        twitter: "Twitter",
+        contact: "Contact Information",
+        email: "Email",
+        phone: "Phone",
+        portfolio: "Portfolio Information",
+        frontendDeveloper: "Frontend Developer",
+      },
+    },
   },
 });
 
