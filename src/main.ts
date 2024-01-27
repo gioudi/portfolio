@@ -8,11 +8,14 @@ import { createI18n } from "vue-i18n";
 import ScrollReveal from "vue-scroll-reveal";
 import VerticalTimeline from "vue-vertical-timeline";
 import VerticalTimelineItem from "vue-vertical-timeline-item";
-import "./styles/global.scss";
+import ToggleButton from "@/components/ToggleButton.vue";
+import "~bulma/bulma.sass";
 import VueCarousel from "vue-carousel";
+
+import { useThemeStore } from "./store/theme";
+
 const app = createApp(App);
 
-app.use(createPinia());
 app.use(router);
 
 const i18n = createI18n({
@@ -57,7 +60,6 @@ app.use(ScrollReveal());
 app.component("VerticalTimeline", VerticalTimeline);
 app.component("VerticalTimelineItem", VerticalTimelineItem);
 
-// Configure scroll animation for the timeline
 app.directive("scroll-reveal", {
   beforeMount(el, binding) {
     ScrollReveal().reveal(el, binding.value);
@@ -65,4 +67,13 @@ app.directive("scroll-reveal", {
 });
 
 app.use(VueCarousel);
+
+const pinia = createPinia();
+app.use(pinia);
+
+const themeStore = useThemeStore();
+app.provide("themeStore", themeStore);
+
+app.component("ToggleButton", ToggleButton);
+
 app.mount("#app");
