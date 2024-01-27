@@ -56,7 +56,3 @@ const degrees = [
   },
 ];
 </script>
-
-<style scoped>
-/* Add custom styles for the timeline */
-</style>

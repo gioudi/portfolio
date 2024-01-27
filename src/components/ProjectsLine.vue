@@ -68,7 +68,3 @@ const hideTech = (index) => {
   showTechInfo[index] = false;
 };
 </script>
-
-<style scoped>
-/* Add Bulma and custom styles here */
-</style>
