@@ -1,14 +1,14 @@
 <template>
   <div>
-    <h1>Highly motivated and result-oriented developer...</h1>
+    <h1 class="title">Highly motivated and result-oriented developer...</h1>
     <Timeline />
-    <Projects />
+    <ProjectsLine />
     <ContactForm />
   </div>
 </template>
 
 <script setup>
 import Timeline from "../components/TimeLineC.vue";
-import Projects from "@/components/Projects.vue";
+import ProjectsLine from "@/components/ProjectsLine.vue";
 import ContactForm from "@/components/ContactForm.vue";
 </script>
