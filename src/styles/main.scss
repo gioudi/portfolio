@@ -1,0 +1,82 @@
+// Customize Global Styles for a Black and White Theme
+$primary: #333333; // Dark Black
+$link: #444444; // Slightly Darker Black
+$info: #555555; // Dark Gray
+$success: #777777; // Gray
+$warning: #999999; // Light Gray
+$danger: #b2b2b2; // Lighter Gray
+
+$background: #f2f2f2; // Light Gray (Background color)
+$foreground: #000000; // Black (Foreground color)
+
+
+@import 'bulma/bulma';
+
+// Custom Global Styles
+body {
+  font-family: 'Roboto', sans-serif; // Replace with your chosen serious font family
+  background-color: $background;
+  color: $foreground;
+  margin: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+// Header Styles
+header {
+  background-color: $primary;
+  color: $foreground;
+  padding: 20px;
+}
+
+// Navigation Styles
+.navbar {
+  background-color: $primary;
+  color: $foreground;
+
+  a {
+    color: $foreground;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Footer Styles
+footer {
+  background-color: $primary;
+  color: $foreground;
+  padding: 20px;
+}
+
+// Example Button Styling
+.button {
+  background-color: $primary; // Custom primary color for buttons
+  color: $foreground;
+  border-color: $primary;
+  // Add other button styles as needed
+}
+
+// Example Input Styling
+.input {
+  background-color: $background;
+  color: $foreground;
+  border-color: $primary;
+  // Add other input styles as needed
+}
+
+// Example Link Styling
+a {
+  color: $link;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+

@@ -1,22 +1,16 @@
-// src/main.ts
-
 import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import { createPinia } from "pinia";
 import { createI18n } from "vue-i18n";
-import ScrollReveal from "vue-scroll-reveal";
-import VerticalTimeline from "vue-vertical-timeline";
-import VerticalTimelineItem from "vue-vertical-timeline-item";
-import ToggleButton from "@/components/ToggleButton.vue";
-
-import LanguageToggleButton from "./path/to/LanguageToggleButton.vue";
-
-import "~bulma/bulma.sass";
+import VueScrollReveal from "vue-scroll-reveal";
+import "./styles/main.scss";
 import VueCarousel from "vue-carousel";
 
 import { useThemeStore } from "./store/theme";
 import { useLanguageStore } from "./store/language";
+
+import useNotify from "vue3-notify";
 
 const app = createApp(App);
 
@@ -24,6 +18,7 @@ app.use(router);
 
 const i18n = createI18n({
   locale: "en",
+  allowComposition: true,
   messages: {
     en: {
       footer: {
@@ -60,17 +55,16 @@ const i18n = createI18n({
 
 app.use(i18n);
 
-app.use(ScrollReveal());
-app.component("VerticalTimeline", VerticalTimeline);
-app.component("VerticalTimelineItem", VerticalTimelineItem);
+app.use(VueScrollReveal);
 
-app.directive("scroll-reveal", {
+/* app.directive("scroll-reveal", {
   beforeMount(el, binding) {
-    ScrollReveal().reveal(el, binding.value);
+    VueScrollReveal.reveal(el, binding.value);
   },
-});
+}); */
 
 app.use(VueCarousel);
+app.use(useNotify);
 
 const pinia = createPinia();
 app.use(pinia);
@@ -78,11 +72,7 @@ app.use(pinia);
 const themeStore = useThemeStore();
 app.provide("themeStore", themeStore);
 
-app.component("ToggleButton", ToggleButton);
-
 const languageStore = useLanguageStore();
 app.provide("languageStore", languageStore);
-
-app.component("LanguageToggleButton", LanguageToggleButton);
 
 app.mount("#app");

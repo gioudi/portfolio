@@ -28,12 +28,8 @@
       </div>
     </div>
     <div v-else>
-      <!-- Use a carousel for more than 3 projects -->
       <carousel>
-        <slide v-for="(project, index) in projects" :key="index">
-          <!-- Same card structure as above -->
-          <!-- ... -->
-        </slide>
+        <slide v-for="(project, index) in projects" :key="index"> </slide>
       </carousel>
     </div>
   </div>

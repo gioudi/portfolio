@@ -1,6 +1,4 @@
 <template>
-  <ToggleButton />
-  <LanguageToggleButton />
   <router-view />
 </template>
 
