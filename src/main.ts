@@ -9,10 +9,14 @@ import ScrollReveal from "vue-scroll-reveal";
 import VerticalTimeline from "vue-vertical-timeline";
 import VerticalTimelineItem from "vue-vertical-timeline-item";
 import ToggleButton from "@/components/ToggleButton.vue";
+
+import LanguageToggleButton from "./path/to/LanguageToggleButton.vue";
+
 import "~bulma/bulma.sass";
 import VueCarousel from "vue-carousel";
 
 import { useThemeStore } from "./store/theme";
+import { useLanguageStore } from "./store/language";
 
 const app = createApp(App);
 
@@ -75,5 +79,10 @@ const themeStore = useThemeStore();
 app.provide("themeStore", themeStore);
 
 app.component("ToggleButton", ToggleButton);
+
+const languageStore = useLanguageStore();
+app.provide("languageStore", languageStore);
+
+app.component("LanguageToggleButton", LanguageToggleButton);
 
 app.mount("#app");
