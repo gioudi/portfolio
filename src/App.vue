@@ -1,4 +1,5 @@
 <template>
+  <ToggleButton />
   <router-view />
 </template>
 
