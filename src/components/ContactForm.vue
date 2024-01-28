@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="column is-6 py-5">
+    <h2 class="title is-2">Contact to me</h2>
     <form @submit.prevent="submitForm">
       <div class="field">
         <label class="label">Name</label>
