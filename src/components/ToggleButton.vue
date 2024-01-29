@@ -1,5 +1,3 @@
-<!-- ToggleButton.vue -->
-
 <template>
   <button @click="toggleTheme" class="toggle-button">
     <span class="icon">

@@ -1,0 +1,65 @@
+@import './variables';
+
+
+@import 'bulma/bulma';
+
+body {
+  font-family: 'Roboto', sans-serif; 
+  background-color: $background;
+  color: $foreground;
+  margin: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+header {
+  background-color: $primary;
+  color: $foreground;
+  padding: 20px;
+}
+
+.navbar {
+  background-color: $primary;
+  color: $foreground;
+
+  a {
+    color: $foreground;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+
+footer {
+  background-color: $primary;
+  color: $foreground;
+  padding: 20px;
+}
+
+
+.button {
+  background-color: $primary; 
+  color: $foreground;
+  border-color: $primary;
+}
+
+.input {
+  background-color: $background;
+  color: $foreground;
+}
+
+a {
+  color: $link;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+

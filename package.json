@@ -24,7 +24,8 @@
     "vue-router": "^4.0.3",
     "vue-scroll-reveal": "^2.1.0",
     "vue-vertical-timeline": "^0.1.0",
-    "vue3-notify": "^0.1.0"
+    "vue3-notify": "^0.1.0",
+    "vuelidate": "^0.7.7"
   },
   "devDependencies": {
     "@types/jest": "^27.0.1",

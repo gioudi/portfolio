@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h2 class="title is-2">Projects</h2>
+  <div class="py-5">
+    <h2 class="title is-2 has-text-centered">Projects</h2>
     <div v-if="projects.length <= 3" class="columns is-multiline">
       <div
         v-for="(project, index) in projects"
@@ -28,12 +28,8 @@
       </div>
     </div>
     <div v-else>
-      <!-- Use a carousel for more than 3 projects -->
       <carousel>
-        <slide v-for="(project, index) in projects" :key="index">
-          <!-- Same card structure as above -->
-          <!-- ... -->
-        </slide>
+        <slide v-for="(project, index) in projects" :key="index"> </slide>
       </carousel>
     </div>
   </div>
