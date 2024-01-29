@@ -1,6 +1,6 @@
 <template>
   <div class="py-5">
-    <h2 class="title is-2">Projects</h2>
+    <h2 class="title is-2 has-text-centered">Projects</h2>
     <div v-if="projects.length <= 3" class="columns is-multiline">
       <div
         v-for="(project, index) in projects"

@@ -23,7 +23,7 @@ const i18n = createI18n({
     en: {
       footer: {
         personalInfo: "Personal Information",
-        name: "Your Name",
+        name: "Sergio Penagos",
         location: "Your Location",
         socialMedia: "Social Media",
         linkedIn: "LinkedIn",
@@ -38,7 +38,7 @@ const i18n = createI18n({
     es: {
       footer: {
         personalInfo: "Personal Information",
-        name: "Your Name",
+        name: "Sergio Penagos",
         location: "Your Location",
         socialMedia: "Social Media",
         linkedIn: "LinkedIn",
