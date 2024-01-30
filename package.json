@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.5.1",
+    "animate.css": "^4.1.1",
     "bulma": "^0.9.4",
     "core-js": "^3.8.3",
     "pinia": "^2.1.7",
@@ -23,6 +24,7 @@
     "vue-i18n": "^9.9.0",
     "vue-router": "^4.0.3",
     "vue-scroll-reveal": "^2.1.0",
+    "vue-scrollama": "^2.0.6",
     "vue-vertical-timeline": "^0.1.0",
     "vue3-notify": "^0.1.0",
     "vuelidate": "^0.7.7"
