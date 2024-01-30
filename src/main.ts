@@ -6,7 +6,6 @@ import { createI18n } from "vue-i18n";
 import VueScrollReveal from "vue-scroll-reveal";
 import "./styles/main.scss";
 import VueCarousel from "vue-carousel";
-
 import { useThemeStore } from "./store/theme";
 import { useLanguageStore } from "./store/language";
 
