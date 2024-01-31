@@ -51,7 +51,6 @@
       </div>
     </form>
 
-    <!-- Success Notification -->
     <notify v-if="showSuccessNotification" type="success">
       {{ successNotificationMessage }}
     </notify>

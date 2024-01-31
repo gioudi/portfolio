@@ -12,9 +12,12 @@
         <!-- Social Media Links -->
         <div class="column">
           <h3 class="title is-5">{{ t("footer.socialMedia") }}</h3>
-          <a href="#" target="_blank" rel="noopener noreferrer">{{
-            t("footer.linkedIn")
-          }}</a>
+          <a
+            href="https://www.linkedin.com/in/analyst-sergio-penagos/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >{{ t("footer.linkedIn") }}</a
+          >
           <a href="#" target="_blank" rel="noopener noreferrer">{{
             t("footer.twitter")
           }}</a>
