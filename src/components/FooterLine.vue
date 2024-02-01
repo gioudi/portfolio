@@ -3,10 +3,8 @@
     <div class="container">
       <div class="columns">
         <!-- Personal Information -->
-        <div class="column">
-          <h3 class="title is-5">{{ t("footer.personalInfo") }}</h3>
-          <p>{{ t("footer.name") }}</p>
-          <p>{{ t("footer.location") }}</p>
+        <div class="column has-text-centered">
+          <p>&copy; {{ t("footer.name") }}. All rights reserved.</p>
         </div>
       </div>
     </div>

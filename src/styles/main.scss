@@ -45,8 +45,11 @@ footer {
 
 .button {
   background-color: $primary; 
-  color: $foreground;
+  color: $background;
   border-color: $primary;
+  &:hover {
+    color: $background;
+  }
 }
 
 .input {
