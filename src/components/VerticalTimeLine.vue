@@ -1,5 +1,5 @@
 <template>
-  <h2 class="title is-2 has-text-centered">About me</h2>
+  <h2 class="title is-2 has-text-centered" data-aos="fade-right">About me</h2>
   <div class="container timeline">
     <div
       v-for="(event, index) in events"
@@ -11,7 +11,15 @@
       }"
     >
       <div class="marker"></div>
-      <div class="timeline-content">
+      <div class="timeline-content" v-if="index % 2 !== 0" data-aos="fade-left">
+        <i :class="event.icon"></i>
+        <h5>
+          {{ event.title }} <small>{{ event.date }}</small>
+        </h5>
+        <span>{{ event.subtitle }}</span>
+        <p>{{ event.description }}</p>
+      </div>
+      <div class="timeline-content" v-else data-aos="fade-right">
         <i :class="event.icon"></i>
         <h5>
           {{ event.title }} <small>{{ event.date }}</small>

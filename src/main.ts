@@ -20,32 +20,12 @@ const i18n = createI18n({
   messages: {
     en: {
       footer: {
-        personalInfo: "Personal Information",
         name: "Sergio Penagos",
-        location: "Colombia",
-        socialMedia: "Social Media",
-        linkedIn: "LinkedIn",
-        twitter: "Twitter",
-        contact: "Contact Information",
-        email: "Email",
-        phone: "Phone",
-        portfolio: "Portfolio Information",
-        frontendDeveloper: "Frontend Developer",
       },
     },
     es: {
       footer: {
-        personalInfo: "Personal Information",
         name: "Sergio Penagos",
-        location: "Colombia",
-        socialMedia: "Social Media",
-        linkedIn: "LinkedIn",
-        twitter: "Twitter",
-        contact: "Contact Information",
-        email: "Email",
-        phone: "Phone",
-        portfolio: "Portfolio Information",
-        frontendDeveloper: "Frontend Developer",
       },
     },
   },
