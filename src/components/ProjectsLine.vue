@@ -1,66 +1,123 @@
 <template>
   <div class="py-5">
-    <h2 class="title is-2 has-text-centered">Projects</h2>
-    <div v-if="projects.length <= 3" class="columns is-multiline">
+    <h2 class="title is-2 has-text-centered">My Recent Work</h2>
+    <div class="columns is-multiline">
       <div
+        class="column is-one-quarter-desktop"
         v-for="(project, index) in projects"
         :key="index"
-        class="column is-4"
       >
-        <div
-          @mouseenter="showTech(index)"
-          @mouseleave="hideTech(index)"
-          class="card"
-        >
-          <div class="card-image">
-            <figure class="image is-4by3">
-              <img :src="project.image" alt="Project Image" />
-            </figure>
-          </div>
+        <div class="card container-image">
+          <figure class="container-image__background">
+            <!--   <div
+              class="drop-down-window px-3 is-flex is-align-items-center is-justify-content-center has-small-text has-text-black"
+            >
+              {{ project.techStack }}
+            </div> -->
+            <img
+              class="container-image__background--image"
+              :src="require(`@/assets/${project.image}`)"
+              :alt="project.image_alt"
+            />
+          </figure>
+
           <div class="card-content">
-            <p class="title is-4">{{ project.title }}</p>
-            <p class="subtitle is-6">{{ project.description }}</p>
-          </div>
-          <div v-if="showTechInfo[index]" class="card-footer">
-            <p>{{ project.techStack }}</p>
+            <p class="title is-6 has-text-weight-bold">{{ project.title }}</p>
+            <p class="is-size-7 mb-2 description">
+              {{ project.description }}
+            </p>
           </div>
         </div>
       </div>
     </div>
-    <div v-else>
-      <carousel>
-        <slide v-for="(project, index) in projects" :key="index"> </slide>
-      </carousel>
-    </div>
   </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
+<script setup lang="ts">
+import { ref, onMounted, onBeforeUnmount } from "vue";
 
 const projects = ref([
   {
-    title: "Project 1",
-    description: "Description of Project 1",
-    image: "path/to/project1.jpg",
-    techStack: "Vue, TypeScript, Bulma",
+    title: "WEB DANDO",
+    description:
+      "Website that offers release credits for military, police and pensioners.",
+    image: "DANDO.png",
+    techStack: "Html5, Sass, Vue, TypeScript, Github",
   },
   {
-    title: "Project 2",
-    description: "Description of Project 2",
-    image: "path/to/project2.jpg",
-    techStack: "React, JavaScript, Tailwind CSS",
+    title: "ONBOARDING WEB DANDO",
+    description:
+      "Onboarding website that allows customers to ask for a loan, upload documents and sign the application via keycloak.",
+    image: "DANDO_ONBOARDING.png",
+    techStack: "Html5, Sass, Vue, TypeScript, Github",
   },
-  // Add more projects as needed
+  {
+    title: "PRIVATE WEB DANDO",
+    techStack: "Html5, Sass, Vue, TypeScript, Github",
+    image_alt: "dando_private",
+    description:
+      "Private website that allows analysts to check for a client loan, upload or delete documents and authorize the client's applications.",
+    image: "DANDO_PRIVATE.png",
+  },
+  {
+    title: "DEONE",
+    techStack: "React native, Sass, Laravel, JavaScript, Bitbucket",
+    image: "DEONE.png",
+    image_alt: "deOne",
+    description:
+      "Mobile application that offers you Express Courier service, such as sending packages or any type of service you request.",
+    kind: "Work",
+    site: "https://play.google.com/store/apps/details?id=com.qoopa.deone",
+  },
+  {
+    title: "WEB BBC",
+    image: "BBC.png",
+    kind: "Work",
+    techStack: "Html5, Sass, TypeScript, Github, Php",
+    description:
+      "Bogota Beer Company website where every client could see and get information about company products, offers, services and office.",
+    image_alt: "bbc",
+    site: "https://www.bbccerveceria.com/",
+  },
+  {
+    title: "WEB STELLA ARTOIS",
+    image: "STELLA.png",
+    techStack: "Html5, Sass, TypeScript, Github, Php",
+    kind: "Work",
+    site: "https://www.stellaartois.co/",
+    image_alt: "google",
+    description:
+      "Stella artois colombian website where every client could see and get information about company products, offers, services and office.",
+  },
+  {
+    title: "PRIVATE WEB MIFEL",
+    image: "MIFEL.png",
+    techStack: "Html5, Sass, TypeScript, Github, Vue",
+    kind: "Work",
+    site: "https://mifel-banca.modyo.build/",
+    image_alt: "mifelweb",
+    description:
+      "Multi-language mexican bank private site and public site.This website permits management that clients' cards, checkbooks and clarifications.",
+  },
+  {
+    title: "FAKE GOOGLE",
+    image: "GOOGLE.png",
+    techStack: "Html5, Sass, JavaScript, Github, Vue",
+    kind: "Personal",
+    site: "https://gioudi.github.io/landing-page-google/",
+    image_alt: "google",
+    description:
+      "Template about Google's landing page, where you can see a dropdown tools and a landing page mobile version,  built using vue.",
+  },
+  {
+    title: "WEATHER FORECAST",
+    image: "WEATHER.png",
+    techStack: "React, Css3, JavaScript, TypeScript, Github",
+    kind: "Personal",
+    site: "https://gioudi.github.io/react-app-weather/",
+    image_alt: "weather",
+    description:
+      "Weather website where a person would check a specific city information, this information is getting from a free Api weather using axios and typescript.",
+  },
 ]);
-
-const showTechInfo = ref(Array(projects.value.length).fill(false));
-
-const showTech = (index) => {
-  showTechInfo[index] = true;
-};
-
-const hideTech = (index) => {
-  showTechInfo[index] = false;
-};
 </script>
