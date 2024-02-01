@@ -16,7 +16,8 @@
         </p>
         <VerticalTimeLine />
         <ProjectsLine />
-        <ContactForm />
+        <SkillsLine />
+        <ContactStep />
       </div>
     </div>
   </div>
@@ -26,6 +27,7 @@
 <script setup lang="ts">
 import VerticalTimeLine from "@/components/VerticalTimeLine.vue";
 import ProjectsLine from "@/components/ProjectsLine.vue";
-import ContactForm from "@/components/ContactForm.vue";
+import SkillsLine from "@/components/SkillsLine.vue";
+import ContactStep from "@/components/ContactStep.vue";
 import FooterLine from "@/components/FooterLine.vue";
 </script>

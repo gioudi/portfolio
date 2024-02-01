@@ -1,5 +1,5 @@
 <template>
-  <h2 class="title is-2 has-text-centered">My Career</h2>
+  <h2 class="title is-2 has-text-centered">About me</h2>
   <div class="container timeline">
     <div
       v-for="(event, index) in events"
@@ -11,7 +11,7 @@
       }"
     >
       <div class="marker"></div>
-      <div class="timeline-content animate__animated animate__fadeIn">
+      <div class="timeline-content">
         <i :class="event.icon"></i>
         <h5>
           {{ event.title }} <small>{{ event.date }}</small>
@@ -71,7 +71,6 @@ const events = [
 </script>
 
 <style lang="scss">
-@import "animate.css/animate.css";
 @import "../styles/variables";
 
 .timeline {

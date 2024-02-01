@@ -1,6 +1,6 @@
 <template>
   <div class="py-5">
-    <h2 class="title is-2 has-text-centered">Projects</h2>
+    <h2 class="title is-2 has-text-centered">My Recent Work</h2>
     <div class="columns is-multiline">
       <div
         class="column is-one-quarter-desktop"
@@ -9,11 +9,11 @@
       >
         <div class="card container-image">
           <figure class="container-image__background">
-            <div
+            <!--   <div
               class="drop-down-window px-3 is-flex is-align-items-center is-justify-content-center has-small-text has-text-black"
             >
               {{ project.techStack }}
-            </div>
+            </div> -->
             <img
               class="container-image__background--image"
               :src="require(`@/assets/${project.image}`)"

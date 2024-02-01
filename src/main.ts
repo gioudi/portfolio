@@ -3,12 +3,12 @@ import App from "./App.vue";
 import router from "./router";
 import { createPinia } from "pinia";
 import { createI18n } from "vue-i18n";
-import VueScrollReveal from "vue-scroll-reveal";
 import "./styles/main.scss";
 import { useThemeStore } from "./store/theme";
 import { useLanguageStore } from "./store/language";
 
-import useNotify from "vue3-notify";
+import "aos/dist/aos.css";
+import AOS, { AosOptions } from "aos";
 
 const app = createApp(App);
 
@@ -52,10 +52,15 @@ const i18n = createI18n({
 });
 
 app.use(i18n);
-
-app.use(VueScrollReveal);
-app.use(useNotify);
-
+AOS.init({
+  offset: 100,
+  duration: 800,
+  easing: "ease-in-out",
+  delay: 0,
+  once: true,
+  mirror: false,
+  anchorPlacement: "top-bottom",
+} as AosOptions);
 const pinia = createPinia();
 app.use(pinia);
 
