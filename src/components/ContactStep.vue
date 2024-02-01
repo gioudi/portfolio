@@ -26,7 +26,7 @@
         ><span class="icon is-large is-hoverable is-size-3"
           ><i class="fab fa-github"></i></span
       ></a>
-      <a :href="github" target="_blank" title="GitHub" data-aos="flip-right"
+      <a :href="github2" target="_blank" title="GitHub" data-aos="flip-right"
         ><span class="icon is-large is-hoverable is-size-3"
           ><i class="fab fa-github"></i></span
       ></a>
