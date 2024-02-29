@@ -119,10 +119,12 @@ export const useStore = defineStore({
         site: "https://www.dando.co/es",
         kind: { type: "job", icon: "fas fa-briefcase" },
         responsibilities: [
-          "Solve bugs and implement new features on the Vue.js application.",
-          "Create new components and upgrade existing ones for the company's custom UI library using Vue, Storybook, and Styled Components.",
+          "Implemented Agile (Scrum) Methodology that includes daily scrum meeting with team, sprint planning and estimating the tasks for the user stories",
+          "Maintain DeOne project by making modifications as required",
+          "Create new components and upgrade existing ones for the custom company UI library using React Native, Vue js and Styled Components",
+          
         ],
-        topics: ["Public site", "App", "Description"],
+        topics: ["Public site", "Private Site", "Description"],
       },
 
     ] as unknown as Project[],
