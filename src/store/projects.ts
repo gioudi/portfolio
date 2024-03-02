@@ -123,7 +123,7 @@ export const useStore = defineStore({
           "As a Junior Frontend Developer, I collaborated with a developer team to create a software solution for PriceSmart Colombia. Our project, called DEONE, encompassed developing both a website and a mobile app. The platform aimed to provide users with an Express Courier service, allowing them to send packages and request various other services.",
         image: "DEONE.png",
         techStack:
-          "Html5, Sass, Vue, Laravel 7, Jquery, Bitbucket, Node, Scrum",
+          "Html5, Sass, Vue, Laravel 7, Jquery, Bitbucket, Node, Scrum, Native",
         media: [
           { type: "image", url: "DEONE_1.png" },
           { type: "image", url: "DEONE_2.png" },
@@ -145,7 +145,7 @@ export const useStore = defineStore({
           "Maintain DeOne project by making modifications as required",
           "Create new components and upgrade existing ones for the custom company UI library using React Native, Vue js and Styled Components",
         ],
-        topics: ["Public site", "Private Site"],
+        topics: ["Public site", "Private Site", "App"],
       },
     ] as unknown as Project[],
     otherProjects: [
