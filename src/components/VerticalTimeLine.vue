@@ -34,6 +34,13 @@
 <script setup lang="ts">
 const events = [
   {
+    date: "Jan2024 - Currently",
+    title: "Star pursuing a degree",
+    subtitle: "Degree: Informatic Engineering",
+    description: "",
+    icon: "fas fa-briefcase",
+  },
+  {
     date: "Au2021 - Jan/2024",
     title: "Worked at Vass",
     subtitle: "Position: Web Developer",
@@ -44,7 +51,7 @@ const events = [
     date: "Abr/2020 - Jul/2022",
     title: "Graduated from Sena",
     subtitle: "Associate's Degree: Technologist Analysis of Information System",
-    description: "lorem",
+    description: "",
     icon: "fas fa-graduation-cap",
   },
   {
