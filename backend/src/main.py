@@ -1,7 +1,10 @@
 from flask import Flask
 from controllers import auth_controller, media_controller
-
+from models.database import engine, Base
+from models.user import User
 app = Flask(__name__)
+
+Base.metadata.create_all(engine)
 
 #Login route
 @app.route('/login', methods=['POST'])
