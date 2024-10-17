@@ -1,7 +1,14 @@
 from flask import request, jsonify
 from services.auth_service import AuthService
+from repositories.user_repository import UserRepository
+from models.database import Session
 
-auth_service = AuthService()
+session = Session()
+
+user_repository = UserRepository(session)
+
+
+auth_service = AuthService(user_repository)
 
 def login():
     data = request.get_json()
