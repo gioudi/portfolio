@@ -2,6 +2,8 @@ from flask import request, jsonify
 from services.auth_service import AuthService
 from repositories.user_repository import UserRepository
 from models.database import Session
+from utils.jwt_utils import encode_jwt
+
 
 session = Session()
 
@@ -17,6 +19,8 @@ def login():
     
     
     if auth_service.login(username, password): 
-        return jsonify({"message": "Login successful!"}, 200)
+        user_id = auth_service.get_user_id(username)
+        token = encode_jwt(user_id) 
+        return jsonify({"message": "Login successful!", "token": token}, 200)
     else:
         return jsonify({"message": "Invalid credentials!"}, 401)

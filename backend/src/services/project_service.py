@@ -20,3 +20,6 @@ class ProjectService:
         
         self.project_repository.add_project(project)
         return project
+    
+    def get_all_projects(self):
+        return self.project_repository.get_all_projects()
