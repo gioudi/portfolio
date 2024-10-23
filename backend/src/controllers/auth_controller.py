@@ -17,10 +17,9 @@ def login():
     username = data.get('username')
     password = data.get('password')
     
+    token = auth_service.login(username, password)
     
-    if auth_service.login(username, password): 
-        user_id = auth_service.get_user_id(username)
-        token = encode_jwt(user_id) 
+    if  token:
         return jsonify({"message": "Login successful!", "token": token}, 200)
     else:
         return jsonify({"message": "Invalid credentials!"}, 401)

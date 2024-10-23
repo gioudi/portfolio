@@ -23,3 +23,7 @@ class ProjectService:
     
     def get_all_projects(self):
         return self.project_repository.get_all_projects()
+    
+    
+    def get_projects_types(self):
+        print("Logic get types projects")

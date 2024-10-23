@@ -1,27 +1,20 @@
+import axios from "axios";
 import { defineStore } from "pinia";
-
-interface Media {
-  type: "image" | "video";
-  url: string;
-}
 
 interface Kind {
   type: "job" | "personal";
   icon: string;
 }
 
-interface Project {
-  id: string;
-  title: string;
+interface Projects {
+  name: string;
   description: string;
-  image: string;
-  techStack: string;
-  image_alt: string;
-  media: Media[];
-  kind: Kind;
-  site: string;
-  responsibilities: [];
-  topics: [];
+  project_type_id: number;
+  link: string[];
+  technologies: string[];
+  tags: string[];
+  responsibilities: string;
+  user_id: number;
 }
 
 interface otherProjects {
@@ -171,7 +164,7 @@ export const useStore = defineStore({
         ],
         topics: ["Private Site"],
       },
-    ] as unknown as Project[],
+    ] as any,
     otherProjects: [
       {
         title: "WEB BBC",
@@ -216,11 +209,32 @@ export const useStore = defineStore({
         description:
           "Weather website where a person would check a specific city information, this information is getting from a free Api weather using axios and typescript.",
       },
-    ] as unknown as otherProjects[],
+    ] as any,
+    data: [] as unknown as Projects[],
   }),
   actions: {
     fetchProjectDetails(id: string) {
-      return this.projects.find((p) => p.id === id);
+      return this.projects.find((p: { id: string }) => p.id === id);
+    },
+    async fetchProjects() {
+      try {
+        const response = await axios.get("/api/projects");
+        this.data = response.data;
+      } catch (error) {
+        console.error("Error fetching projects", error);
+      }
+    },
+    async createProject(projectData: any) {
+      try {
+        const response = await axios.post("/api/projects", projectData);
+        this.projects.push(response.data.project);
+      } catch (error) {
+        console.error("Error creating project:", error);
+      }
+    },
+    async fetchTypeProjects() {
+      const response = await axios.get("/api/projects/types");
+      this.projects = response.data;
     },
   },
 });
