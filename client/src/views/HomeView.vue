@@ -1,9 +1,21 @@
 <template>
   <div class="container pt-5">
     <div class="column mb-5">
-      <h1 class="title is-1 has-text-weight-bold">Sergio Penagos</h1>
+      <div
+        class="is-flex is-flex-direction-row is-justify-content-space-between is-align-items-center"
+      >
+        <h1 class="title is-1 has-text-weight-bold is-inline">
+          Sergio Penagos
+        </h1>
+        <router-link
+          class="is-inline-flex is-align-items-center is-justify-content-center is-clickable button"
+          to="/login"
+        >
+          Login
+        </router-link>
+      </div>
       <h2 class="subtitle has-text-weight-medium">
-        Front-end Developer / Web Developer / Willing Relocate
+        Web Developer / Freelance / Willing Relocate
       </h2>
       <p class="subtitle-6 mb-3">
         I come from a small place called Asgård, Since 2017 I've been a Frontend

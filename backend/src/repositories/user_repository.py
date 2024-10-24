@@ -8,5 +8,5 @@ class UserRepository:
     def get_user_by_username(self, username:str)-> User:
         return self.session.query(User).filter_by(username=username).first()
     def add_user(self, user:User): 
-        self.session.add(User)
+        self.session.add(user)
         self.session.commit()
