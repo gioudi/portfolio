@@ -1,12 +1,13 @@
 <template>
-  <section class="container content-baseline pt-5 hv-100">
+  <section class="container content-baseline pt-6 hv-100">
     <div class="columns px-3">
       <article class="column is-half is-offset-one-quarter">
+        <router-link to="/">Go back</router-link>
         <div class="login-form">
-          <h2 class="title is-2">Sign in</h2>
-          <form @submit.prevent="login">
+          <h2 class="title is-2 has-text-centered mb-6">Hi! Welcome</h2>
+          <form class="mt-6" @submit.prevent="login">
             <div class="field">
-              <label class="label">Username</label>
+              <label class="label">Username, Email</label>
               <div class="control">
                 <input class="input" v-model="username" type="text" required />
               </div>
@@ -24,7 +25,7 @@
               </div>
             </div>
 
-            <button class="button is-primary" type="submit">Continue</button>
+            <button class="button is-primary" type="submit">Log In</button>
           </form>
         </div>
         <FooterLine />

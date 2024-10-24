@@ -10,8 +10,9 @@ export const useAuthStore = defineStore("auth", {
     async login(username: string, password: string) {
       try {
         const response = await axios.post("api/login", { username, password });
-        if (response.data.token) {
-          this.token = response.data.token;
+        console.log(response.data[0].message);
+        if (response.data[0].token) {
+          this.token = response.data[0].token;
           this.loggedIn = true;
           if (this.token) {
             localStorage.setItem("token", this.token);
@@ -23,7 +24,6 @@ export const useAuthStore = defineStore("auth", {
       } catch (error) {
         this.loggedIn = false;
         throw new Error("Invalid credentials");
-        
       }
     },
     logout() {
