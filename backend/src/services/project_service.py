@@ -1,3 +1,5 @@
+from models.image import Image
+from models.video import Video
 from models.projects import Project
 from repositories.project_repository import ProjectRepository
 
@@ -7,6 +9,11 @@ class ProjectService:
         self.project_repository = project_repository
     
     def create_project(self, data):
+        
+        if not data.get("images"):
+            raise ValueError("At least one image is required.")
+        
+        
         project = Project(
             name= data['name'],
             description = data['description'],
@@ -18,6 +25,20 @@ class ProjectService:
             user_id=data['user_id']  
         )
         
+        for image_item in data['images']:
+            image = Image(
+                url = image_item['url']
+            )
+            
+            project.images.append(image)
+            
+        for video_item in data.get('videos',[]):
+            video = Video(
+                url=video_item['url']
+            )
+            
+            project.videos.append(video)
+        
         self.project_repository.add_project(project)
         return project
     
@@ -25,5 +46,3 @@ class ProjectService:
         return self.project_repository.get_all_projects()
     
     
-    def get_projects_types(self):
-        print("Logic get types projects")

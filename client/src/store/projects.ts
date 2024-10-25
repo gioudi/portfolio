@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "@/axios";
 import { defineStore } from "pinia";
 
 interface Kind {
@@ -17,6 +17,11 @@ interface Projects {
   user_id: number;
 }
 
+interface ProjectTypes {
+  name: string;
+  id: number;
+}
+
 interface otherProjects {
   id: string;
   title: string;
@@ -28,8 +33,8 @@ interface otherProjects {
   site: string;
 }
 
-export const useStore = defineStore({
-  id: "main",
+export const useProjectStore = defineStore({
+  id: "project",
   state: () => ({
     projects: [
       {
@@ -211,6 +216,8 @@ export const useStore = defineStore({
       },
     ] as any,
     data: [] as unknown as Projects[],
+    projectTypes: [] as unknown as ProjectTypes[],
+    loading: false as unknown as boolean
   }),
   actions: {
     fetchProjectDetails(id: string) {
@@ -233,8 +240,20 @@ export const useStore = defineStore({
       }
     },
     async fetchTypeProjects() {
-      const response = await axios.get("/api/projects/types");
-      this.projects = response.data;
+      this.loading = true;
+      try {
+        const response = await axios.get("/api/project-types");
+        this.projectTypes = response.data;
+      } catch (error) {
+        this.loading = false;
+        throw new Error(`Error fetching project's types: ${error}`);
+      } finally {
+        this.loading = false;
+      }
     },
   },
+  getters:{
+    getProjectTypes: (state) => state.projectTypes,
+    getLoading: (state) => state.loading,
+  }
 });

@@ -78,17 +78,17 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from "../store/projects";
+import { useProjectStore } from "../store/projects";
 import { useRouter } from "vue-router";
 
 import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
-const store = useStore();
+const store = useProjectStore();
 const router = useRouter();
 
 const projectId = router.currentRoute.value.params.id;
 
-const project = store.projects.find((p) => p.id === projectId);
+const project = store.projects.find((p: any) => p.id === projectId);
 </script>
 <style lang="scss">
 .project-media {

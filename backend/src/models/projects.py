@@ -10,11 +10,13 @@ class Project(Base):
     name = Column(String(255), nullable=False)
     description = Column(Text)
     project_type_id = Column(Integer, ForeignKey('project_types.id'))
-    link = Column(ARRAY(String))
+    link = Column(String(255), nullable=False)
     technologies = Column(ARRAY(String))
     tags = Column(ARRAY(String))
     responsibilities = Column(Text)
     user_id = Column(Integer, ForeignKey('user.id'))
+
     
     project_type = relationship("ProjectType")
-    media = relationship("Media", back_populates="project")
+    images = relationship("Image", back_populates="project")
+    videos = relationship("Video", back_populates="project")
