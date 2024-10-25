@@ -5,23 +5,31 @@
         <router-link to="/">Go back</router-link>
         <div class="login-form">
           <h2 class="title is-2 has-text-centered mb-6">Hi! Welcome</h2>
+
           <form class="mt-6" @submit.prevent="login">
             <div class="field">
               <label class="label">Username, Email</label>
               <div class="control">
-                <input class="input" v-model="username" type="text" required />
+                <Field
+                  name="username"
+                  class="input"
+                  v-model="username"
+                  type="text"
+                />
+                <ErrorMessage name="username" class="has-text-danger" />
               </div>
             </div>
 
             <div class="field">
               <label class="label">Password</label>
               <div class="control">
-                <input
+                <Field
+                  name="password"
                   class="input"
                   v-model="password"
                   type="password"
-                  required
                 />
+                <ErrorMessage name="password" class="has-text-danger" />
               </div>
             </div>
 
@@ -35,25 +43,38 @@
 </template>
 
 <script lang="ts">
-import router from "@/router";
-import { useAuthStore } from "@/store/auth";
 import { defineComponent, ref } from "vue";
+import { useForm, Field, ErrorMessage } from "vee-validate";
+import * as yup from "yup";
+import { useAuthStore } from "@/store/auth";
+import router from "@/router";
 
 export default defineComponent({
+  components: {
+    Field,
+    ErrorMessage,
+  },
   setup() {
-    const authStore = useAuthStore();
+    const { handleSubmit } = useForm({
+      validationSchema: yup.object({
+        username: yup.string().required("Username is required"),
+        password: yup.string().required("Password is required"),
+      }),
+    });
+
     const username = ref("");
     const password = ref("");
 
-    const login = async () => {
+    const authStore = useAuthStore();
+
+    const login = handleSubmit(async (values) => {
       try {
-        await authStore.login(username.value, password.value);
+        await authStore.login(values.username, values.password);
         router.push("/create-project");
-        alert("Login successful!");
       } catch (error) {
         alert("Invalid credentials!");
       }
-    };
+    });
 
     return { username, password, login };
   },

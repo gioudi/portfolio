@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import ProjectDetailView from "../views/ProjectDetailView.vue";
 import LoginView from "@/views/LoginView.vue";
+import CreateProjectView from "@/views/CreateProjectView.vue";
 import { useAuthStore } from "@/store/auth";
 const routes: Array<RouteRecordRaw> = [
   {
@@ -21,8 +22,8 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/create-project",
-    name: "projectDetail",
-    component: ProjectDetailView,
+    name: "createProject",
+    component: CreateProjectView,
     meta: { requiresAuth: true },
   },
 ];

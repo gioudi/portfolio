@@ -1,10 +1,13 @@
+import os
 import jwt
 import datetime
-import secrets
 
 
-SECRET_KEY = secrets.token_urlsafe(60)
 
+SECRET_API_KEY = os.getenv("SECRET_API_KEY")
+
+if not SECRET_API_KEY: 
+    raise Exception("SECRET_API_KEY is missing")
 
 def encode_jwt(user_id):
     payload = {
@@ -12,13 +15,16 @@ def encode_jwt(user_id):
         'iat': datetime.datetime.utcnow(),
         'sub': user_id
     }
-    return jwt.encode(payload, SECRET_KEY, algorithm='HS256')
+    return jwt.encode(payload, SECRET_API_KEY, algorithm='HS256')
 
 def decode_jwt(token):
     try: 
-        payload = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
-        return payload['sub']
+        payload = jwt.decode(token, SECRET_API_KEY, algorithms=['HS256'])
+        print(payload)
+        return payload.get('user_id')
     except jwt.ExpiredSignatureError: 
+        print("Token has expired")
         return None
-    except jwt.InvalidTokenError:
+    except jwt.InvalidTokenError as e:
+        print(f"Token has invalid: {e}")
         return None
