@@ -26,7 +26,7 @@
     "vue-carousel": "^0.18.0",
     "vue-class-component": "^8.0.0-0",
     "vue-filepond": "^7.0.4",
-    "vue-i18n": "^9.9.0",
+    "vue-i18n": "^9.14.3",
     "vue-multiselect": "^3.1.0",
     "vue-router": "^4.0.3",
     "vue-vertical-timeline": "^0.1.0",
