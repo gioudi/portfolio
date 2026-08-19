@@ -1,8 +1,14 @@
 from flask import request, jsonify
 from services.project_service import ProjectService
+from repositories.project_repository import ProjectRepository
+from models.database import Session
 from utils.auth_decorator import token_required
 
-project_service = ProjectService()
+session = Session()
+
+project_repository = ProjectRepository(session)
+
+project_service = ProjectService(project_repository)
 
 
 @token_required

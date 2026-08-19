@@ -2,9 +2,13 @@ import os
 import bcrypt
 from flask import Blueprint, Flask
 from models.project_types import ProjectType
+from models.user import User
+from models.projects import Project
+from models.image import Image
+from models.video import Video
+from models.media import Media
 from controllers import auth_controller, project_type_controller, project_controller
 from models.database import engine, Base
-from models.user import User
 from flask_cors import CORS
 from models.database import Session
 from flask_limiter import Limiter

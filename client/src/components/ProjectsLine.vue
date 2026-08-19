@@ -81,10 +81,10 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from "../store/projects";
+import { useProjectStore } from "../store/projects";
 import router from "@/router";
 
-const store = useStore();
+const store = useProjectStore();
 const otherProjects = store.otherProjects;
 const projects = store.projects;
 
