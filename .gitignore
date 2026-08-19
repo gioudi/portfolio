@@ -26,6 +26,7 @@ Thumbs.db
 dist/
 build/
 *.egg-info/
+*.db
 
 # Coverage
 htmlcov/
