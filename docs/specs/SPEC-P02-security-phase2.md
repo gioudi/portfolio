@@ -168,6 +168,8 @@ return jsonify({"message": "An error occurred"}), 500
 | `backend/src/utils/jwt_utils.py` | Remove dead `encode_jwt` function |
 | `backend/requirements.txt` | Add `flask-limiter` |
 | `.env.example` | Add `ALLOWED_ORIGINS`, `FLASK_DEBUG` vars |
+| `scripts/generate_secret.py` | **New** — generates SECRET_API_KEY and creates .env |
+| `scripts/test_rate_limit.py` | **New** — reusable rate limiter test script |
 
 ---
 
@@ -184,10 +186,40 @@ return jsonify({"message": "An error occurred"}), 500
 
 ## 6. Testing After Fix
 
+### Automated Test Scripts
+
+| Script | Purpose | Usage |
+|--------|---------|-------|
+| `scripts/generate_secret.py` | Generate secure SECRET_API_KEY | `python scripts/generate_secret.py` |
+| `scripts/test_rate_limit.py` | Test login rate limiter | `python scripts/test_rate_limit.py` |
+
+### Rate Limit Test Details
+
+```bash
+# Default: 6 requests to localhost:5000, 1s apart
+python scripts/test_rate_limit.py
+
+# Custom: 10 requests, 0.5s apart, custom URL
+python scripts/test_rate_limit.py --url http://localhost:5000/api/login --requests 10 --delay 0.5
+```
+
+**Expected output:**
+```
+  Request 1: PASS (HTTP 401)
+  Request 2: PASS (HTTP 401)
+  Request 3: PASS (HTTP 401)
+  Request 4: PASS (HTTP 401)
+  Request 5: PASS (HTTP 401)
+  Request 6: BLOCKED (HTTP 429)
+
+  Rate limiter is working!
+```
+
+### Manual Verification
+
 1. **CORS test:** Make a request from a non-allowed origin → should be blocked
-2. **Rate limit test:** Send 6 login requests in 1 minute → 6th should return 429
-3. **Debug mode test:** Check that `debug=True` is NOT active in production config
-4. **Token test:** Verify login + protected routes still work after refactor
+2. **Debug mode test:** Check that `debug=True` is NOT active in production config
+3. **Token test:** Verify login + protected routes still work after refactor
 
 ---
 
@@ -212,5 +244,5 @@ return jsonify({"message": "An error occurred"}), 500
 
 ---
 
-*Spec Version: 1.0*
+*Spec Version: 1.1*
 *Last Updated: 2026-08-19*
