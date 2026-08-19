@@ -426,26 +426,40 @@ When completing a task, Brokkr provides Jör with:
 BRANCHING STRATEGY:
 --------------------
 
-main (or master)
+main (production-ready)
   │
-  ├── feature/JOR-XXX-description
-  │   └── (all feature work)
+  ├── staging (pre-production testing)
+  │   │
+  │   ├── feature/JOR-XXX-description
+  │   │   └── (new features)
+  │   │
+  │   ├── fix/JOR-XXX-description
+  │   │   └── (bug fixes)
+  │   │
+  │   ├── docs/JOR-XXX-description
+  │   │   └── (documentation only)
+  │   │
+  │   └── chore/JOR-XXX-description
+  │       └── (maintenance tasks)
   │
-  ├── fix/JOR-XXX-description
-  │   └── (all bug fixes)
-  │
-  ├── docs/JOR-XXX-description
-  │   └── (documentation only)
-  │
-  └── chore/JOR-XXX-description
-      └── (maintenance tasks)
+  └── gh-pages (auto-deployment from main)
+
+FLOW:
+  1. Create feature/fix branch from staging
+  2. Work on branch
+  3. Create PR → staging (Jör reviews)
+  4. Merge to staging (test)
+  5. staging → main (promote when ready)
+  6. main → gh-pages (auto-deploy)
 
 RULES:
 - main is ALWAYS deployable
+- staging is for testing before production
 - All work happens in branches
 - PRs require Jör's approval
 - Squash merge preferred (clean history)
 - Delete branch after merge
+- NEVER push directly to main or staging
 
 RELEASE TAGGING:
 ----------------
@@ -692,6 +706,10 @@ This contract is a living document. Changes require:
 AMENDMENT HISTORY:
 ------------------
 - v1.0.0 (2026-08-18): Initial contract established
+- v1.1.0 (2026-08-18): Updated branching strategy to include staging branch
+  - Added staging branch for pre-production testing
+  - Updated flow: feature → staging → main → gh-pages
+  - Added rule: NEVER push directly to main or staging
 
 ================================================================================
                          15. SIGNATURES
