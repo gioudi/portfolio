@@ -5,7 +5,7 @@ from repositories.project_repository import ProjectRepository
 
 
 class ProjectService:
-    def __int__(self, project_repository: ProjectRepository):
+    def __init__(self, project_repository: ProjectRepository):
         self.project_repository = project_repository
     
     def create_project(self, data):

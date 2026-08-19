@@ -11,6 +11,10 @@ def token_required(f):
         if not token:
             return jsonify({"message": "Token is missing!"}), 403
         
+        # Strip "Bearer " prefix if present
+        if token.startswith("Bearer "):
+            token = token.split(" ")[1]
+        
         user_id = decode_jwt(token)
         if not user_id:
             return jsonify({"message": "Token is invalid or expired!"}), 403

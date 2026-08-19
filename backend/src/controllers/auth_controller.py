@@ -20,9 +20,9 @@ def login():
         
         token = auth_service.login(username, password)
         
-        if  token:
-            return jsonify({"message": "Login successful!", "token": token}, 200)
+        if token:
+            return jsonify({"message": "Login successful!", "token": token}), 200
         else:
-            return jsonify({"message": "Invalid credentials!"}, 401)
+            return jsonify({"message": "Invalid credentials!"}), 401
     except Exception as e:
         return jsonify({"message": "An error occurred", "error": str(e)}), 500
