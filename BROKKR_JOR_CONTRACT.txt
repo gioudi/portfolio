@@ -2,7 +2,7 @@
            THE FORGE OF BROKKR & JÖR - WORKING CONTRACT & RULES
 ================================================================================
                     Dwarven Alliance for Code Excellence
-                         Version 1.0 - August 2026
+                         Version 1.2.1 - August 2026
 
 ================================================================================
                          PREAMBLE - THE OATH
@@ -74,6 +74,7 @@ We follow a strict workflow inspired by spec-driven development:
   │     - Brokkr writes code in a branch                            │
   │     - NEVER on main/master                                      │
   │     - Follows naming conventions                                │
+  │     - Runs npm run lint:fix before committing                   │
   │                                                                 │
   │  5. DOCUMENT (Documentation)                                    │
   │     - Brokkr updates all relevant docs                          │
@@ -93,6 +94,49 @@ We follow a strict workflow inspired by spec-driven development:
   └─────────────────────────────────────────────────────────────────┘
 
 NO EXCEPTIONS: Every change follows this workflow. No shortcuts.
+
+LINT AS STANDARD WORKFLOW:
+--------------------------
+Every phase (FORGE step) must run `npm run lint:fix` before committing.
+Lint is not a separate phase — it is part of the FORGE step for every task.
+This ensures code consistency and prevents lint debt from accumulating.
+
+Tools available:
+- `npm run lint` — check for errors/warnings
+- `npm run lint:fix` — auto-fix formatting issues
+
+Phase 1 included a one-time full codebase cleanup (SPEC-P00). Future phases
+only need to lint the files they touch.
+
+BEFORE CREATING A NEW BRANCH:
+------------------------------
+Always follow this sequence to avoid conflicts:
+
+  1. Fetch latest:          git fetch origin
+  2. Update local staging:  git checkout staging && git pull origin staging
+  3. Create new branch:     git checkout -b <type>/<ticket>-<description>
+  4. Work, commit, push
+  5. After PR merge to staging:
+     a. Switch to staging:  git checkout staging
+     b. Pull latest:        git pull origin staging
+     c. Delete merged branch locally: git branch -d <branch>
+     d. Create next branch from updated staging
+
+WHY THIS MATTERS:
+  If you create a branch from stale staging, your PR will conflict with
+  changes that were merged to staging after you branched. Always start
+  from the latest staging to ensure clean merges.
+
+FLOW DIAGRAM:
+  git fetch origin
+  git checkout staging
+  git pull origin staging
+  git checkout -b chore/JOR-XXX-description
+  # ... work, commit, push, PR → staging ...
+  # After merge:
+  git checkout staging
+  git pull origin staging
+  git branch -d chore/JOR-XXX-description
 
 ================================================================================
                         3. THE RULES OF THE FORGE
@@ -251,7 +295,7 @@ Every time Brokkr suggests or implements a change, he MUST provide:
    adding caching."
 
 PATTERN LIBRARY - COMMON PATTERNS BROKKR WILL EXPLAIN:
--------------------------------------------------------
+------------------------------------------------------
 - Repository Pattern (data access abstraction)
 - Service Layer Pattern (business logic isolation)
 - Controller Pattern (request handling)
@@ -546,6 +590,7 @@ BEFORE ANY PR IS READY:
   - [ ] No TODO/FIXME without ticket reference
   - [ ] Consistent naming conventions
   - [ ] No magic numbers/strings
+  - [ ] Lint passes with 0 errors and 0 warnings
 
 □ Security
   - [ ] No hardcoded secrets
@@ -572,7 +617,7 @@ BEFORE ANY PR IS READY:
   - [ ] Changelog entry
 
 ================================================================================
-                        10. COMMUNICATION PROTOCOL
+                       10. COMMUNICATION PROTOCOL
 ================================================================================
 
 HOW JÖR AND BROKKR COMMUNICATE:
@@ -612,7 +657,7 @@ REQUESTING REVIEW:
   Awaiting your approval to merge."
 
 ================================================================================
-                         11. EXCEPTION HANDLING
+                       11. EXCEPTION HANDLING
 ================================================================================
 
 WHAT IF BROKKR FINDS A CRITICAL BUG?
@@ -673,7 +718,7 @@ LOCAL DEVELOPMENT:
 6. Start development servers
 
 ================================================================================
-                          13. METRICS & TRACKING
+                         13. METRICS & TRACKING
 ================================================================================
 
 WHAT WE TRACK:
@@ -706,10 +751,20 @@ This contract is a living document. Changes require:
 AMENDMENT HISTORY:
 ------------------
 - v1.0.0 (2026-08-18): Initial contract established
-- v1.1.0 (2026-08-18): Updated branching strategy to include staging branch
+- v1.1.0 (2026-08-18): Updated branching strategy with staging branch
   - Added staging branch for pre-production testing
   - Updated flow: feature → staging → main → gh-pages
   - Added rule: NEVER push directly to main or staging
+- v1.2.0 (2026-08-19): Lint as standard workflow
+  - Added `npm run lint:fix` as mandatory step in FORGE (step 4)
+  - Added quality gate: lint passes with 0 errors and 0 warnings
+  - Added `lint:fix` script to package.json
+  - One-time full codebase cleanup completed (SPEC-P00)
+  - Future phases only lint files they touch
+- v1.2.1 (2026-08-19): Branch hygiene rule
+  - Added mandatory step: always pull staging before creating new branches
+  - Prevents merge conflicts from stale branches
+  - Added flow diagram for branch creation sequence
 
 ================================================================================
                          15. SIGNATURES
