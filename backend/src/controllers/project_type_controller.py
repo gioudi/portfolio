@@ -14,7 +14,6 @@ project_type_service = ProjectTypeService(project_type_repository)
 def token_required(f):
     def decorated(*args, **kwargs):
         token = request.headers.get('Authorization')
-        print(token)
         if not token:
             return jsonify({"message": "Token is missing!"}), 403
         
@@ -22,7 +21,6 @@ def token_required(f):
             token = token.split(" ")[1]
         
         user_id = decode_jwt(token)
-        print(user_id)
         if not user_id:
             return jsonify({"message": "Token is invalid or expired!"}), 403
         
