@@ -6,7 +6,35 @@ interface Kind {
   icon: string;
 }
 
-interface Projects {
+interface MediaItem {
+  type: string;
+  url: string;
+}
+
+export interface LocalProject {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  techStack: string;
+  media: MediaItem[];
+  site: string;
+  kind: Kind;
+  responsibilities: string[];
+  topics: string[];
+}
+
+export interface OtherProject {
+  title: string;
+  image: string;
+  kind: string;
+  techStack: string;
+  description: string;
+  image_alt: string;
+  site: string;
+}
+
+export interface Projects {
   name: string;
   description: string;
   project_type_id: number;
@@ -17,20 +45,22 @@ interface Projects {
   user_id: number;
 }
 
-interface ProjectTypes {
+export interface ProjectTypes {
   name: string;
   id: number;
 }
 
-interface otherProjects {
-  id: string;
-  title: string;
+export interface CreateProjectPayload {
+  name: string;
   description: string;
-  image: string;
-  techStack: string;
-  image_alt: string;
-  kind: Kind;
-  site: string;
+  project_type_id: number | null;
+  link: string;
+  technologies: string[];
+  responsibilities: string;
+  tags: string[];
+  images: File[];
+  video: File | null;
+  user_id: number;
 }
 
 export const useProjectStore = defineStore({
@@ -169,7 +199,7 @@ export const useProjectStore = defineStore({
         ],
         topics: ["Private Site"],
       },
-    ] as any,
+    ] as LocalProject[],
     otherProjects: [
       {
         title: "WEB BBC",
@@ -214,10 +244,10 @@ export const useProjectStore = defineStore({
         description:
           "Weather website where a person would check a specific city information, this information is getting from a free Api weather using axios and typescript.",
       },
-    ] as any,
+    ] as OtherProject[],
     data: [] as unknown as Projects[],
     projectTypes: [] as unknown as ProjectTypes[],
-    loading: false as unknown as boolean
+    loading: false as unknown as boolean,
   }),
   actions: {
     fetchProjectDetails(id: string) {
@@ -231,7 +261,7 @@ export const useProjectStore = defineStore({
         console.error("Error fetching projects", error);
       }
     },
-    async createProject(projectData: any) {
+    async createProject(projectData: CreateProjectPayload) {
       try {
         const response = await axios.post("/api/projects", projectData);
         this.projects.push(response.data.project);
@@ -252,8 +282,8 @@ export const useProjectStore = defineStore({
       }
     },
   },
-  getters:{
+  getters: {
     getProjectTypes: (state) => state.projectTypes,
     getLoading: (state) => state.loading,
-  }
+  },
 });

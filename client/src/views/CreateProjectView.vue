@@ -1,5 +1,5 @@
 <template>
-  <article v-if="loading"> loading...</article>
+  <article v-if="loading">loading...</article>
   <article v-else>
     <section class="container content-baseline py-6 hv-100">
       <div class="columns px-3">
@@ -35,7 +35,8 @@
                   <multiselect
                     v-model="project_type_id"
                     :options="projectTypes"
-                    label="name" track-by="id"
+                    label="name"
+                    track-by="id"
                   ></multiselect>
                   <ErrorMessage
                     name="project_type_id"
@@ -57,8 +58,10 @@
                     v-model="technologies"
                     :multiple="true"
                     :options="technologiesOptions"
-                    label="name" track-by="name"
-                    :preserve-search="true" placeholder="Pick the stack"
+                    label="name"
+                    track-by="name"
+                    :preserve-search="true"
+                    placeholder="Pick the stack"
                   ></multiselect>
                   <ErrorMessage name="technologies" class="has-text-danger" />
                 </div>
@@ -85,9 +88,10 @@
                     v-model="tags"
                     :multiple="true"
                     :options="tagsOptions"
-                    :preserve-search="true" placeholder="Pick some"
+                    :preserve-search="true"
+                    placeholder="Pick some"
                   >
-                </multiselect>
+                  </multiselect>
                   <ErrorMessage name="tags" class="has-text-danger" />
                 </div>
               </div>
@@ -120,7 +124,6 @@
       </div>
     </section>
     <FooterLine />
-
   </article>
 </template>
 
@@ -128,7 +131,6 @@
 import { ref, onMounted } from "vue";
 import { useForm, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
-import router from "../router";
 import { useProjectStore } from "../store/projects";
 import Multiselect from "vue-multiselect";
 import FooterLine from "../components/FooterLine.vue";
@@ -141,7 +143,6 @@ import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css
 import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
 import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 import { storeToRefs } from "pinia";
-
 
 const FilePond = vueFilePond(
   FilePondPluginFileValidateType,
@@ -161,87 +162,84 @@ type ProjectForm = {
 };
 
 onMounted(async () => {
-      await fetchTypeProjects();
+  await fetchTypeProjects();
+});
+const technologiesOptions = ref([
+  { name: "Vue.js", language: "JavaScript" },
+  { name: "Rails", language: "Ruby" },
+  { name: "Sinatra", language: "Ruby" },
+  { name: "Laravel", language: "PHP" },
+  { name: "Phoenix", language: "Elixir" },
+]);
+const tagsOptions = ref([
+  "public site",
+  "private site",
+  "onboarding",
+  "design components",
+  "dependency",
+  "todo",
+  "frontend",
+  "backend",
+  "fullstack",
+  "personal",
+]);
+
+const formValues = ref<ProjectForm>({
+  name: "",
+  description: "",
+  project_type_id: null,
+  link: "",
+  technologies: [],
+  responsibilities: "",
+  tags: [],
+  images: [],
+  video: null,
+});
+
+const { handleSubmit, resetForm } = useForm({
+  initialValues: formValues.value,
+  validationSchema: yup.object({
+    name: yup.string().required("Project's name is required"),
+    description: yup.string().required("Project's description is required"),
+    project_type_id: yup.number().required("Project's type is required"),
+    link: yup.string().required("Project's link is required"),
+    technologies: yup.array().min(1, "At least one technology is required"),
+    responsibilities: yup.string().required("Responsibilities are required"),
+    tags: yup.array().min(1, "At least one tag is required"),
+    images: yup.array().max(10, "Maximum of 10 images allowed"),
+  }),
+});
+
+const name = ref("");
+const description = ref("");
+const project_type_id = ref(null);
+const link = ref("");
+const technologies = ref([]);
+const responsibilities = ref("");
+const tags = ref([]);
+const images = ref<File[]>([]);
+const video = ref<File[]>([]);
+const user_id = ref(1);
+
+const projectStore = useProjectStore();
+const { fetchTypeProjects } = projectStore;
+const { loading, projectTypes } = storeToRefs(projectStore);
+
+const createProject = handleSubmit(async (values: ProjectForm) => {
+  try {
+    await projectStore.createProject({
+      ...values,
+      images,
+      video,
+      user_id,
     });
-    const technologiesOptions = ref([
-      { name: "Vue.js", language: "JavaScript" },
-      { name: "Rails", language: "Ruby" },
-      { name: "Sinatra", language: "Ruby" },
-      { name: "Laravel", language: "PHP" },
-      { name: "Phoenix", language: "Elixir" },
-    ]);
-    const tagsOptions = ref([
-      "public site",
-      "private site",
-      "onboarding",
-      "design components",
-      "dependency",
-      "todo",
-      "frontend",
-      "backend",
-      "fullstack",
-      "personal",
-    ]);
-
-    const formValues = ref<ProjectForm>({
-      name: "",
-      description: "",
-      project_type_id: null,
-      link: "",
-      technologies: [],
-      responsibilities: "",
-      tags: [],
-      images: [],
-      video: null,
-    });
-
-    const { handleSubmit, errors, resetForm } = useForm({
-      initialValues: formValues.value,
-      validationSchema: yup.object({
-        name: yup.string().required("Project's name is required"),
-        description: yup.string().required("Project's description is required"),
-        project_type_id: yup.number().required("Project's type is required"),
-        link: yup.string().required("Project's link is required"),
-        technologies: yup.array().min(1, "At least one technology is required"),
-        responsibilities: yup
-          .string()
-          .required("Responsibilities are required"),
-        tags: yup.array().min(1, "At least one tag is required"),
-        images: yup.array().max(10, "Maximum of 10 images allowed"),
-      }),
-    });
-
-    const name = ref("");
-    const description = ref("");
-    const project_type_id = ref(null);
-    const link = ref("");
-    const technologies = ref([]);
-    const responsibilities = ref("");
-    const tags = ref([]);
-    const images = ref<File[]>([]);
-    const video = ref<File[]>([]);
-    const user_id = ref(1);
-
-    const projectStore = useProjectStore();
-    const { fetchTypeProjects } = projectStore;
-    const { loading, projectTypes} = storeToRefs(projectStore);
- 
-
-    const createProject = handleSubmit(async (values: ProjectForm) => {
-      try {
-        await projectStore.createProject({
-          ...values,
-          images,
-          video,
-          user_id,
-        });
-        resetForm();
-        console.log("Project created")
-      } catch (error) {
-        console.error("Error creating project:", error);
-        alert("Failed to create project. Please try again.");
-      }
-    });
+    resetForm();
+    console.log("Project created");
+  } catch (error) {
+    console.error("Error creating project:", error);
+    alert("Failed to create project. Please try again.");
+  }
+});
 </script>
 
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
