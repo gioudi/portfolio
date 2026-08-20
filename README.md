@@ -146,9 +146,9 @@ POSTGRES_PORT=5432
 
 # Authentication
 SECRET_API_KEY=your_jwt_secret_key
-DEFAULT_USER=sergiopenagos
-DEFAULT_PASSWORD=your_password
-DEFAULT_EMAIL=sergiopenagos881@gmail.com
+DEFAULT_USER=admin
+DEFAULT_PASSWORD=your_secure_password
+DEFAULT_EMAIL=your-email@example.com
 
 # Cloudinary (for media uploads)
 CLOUDINARY_NAME=your_cloud_name
