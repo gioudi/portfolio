@@ -19,10 +19,11 @@ from utils.validators import validate_password_complexity
 def create_default_user():
     session = Session()
 
-    existing_user = session.query(User).filter_by(username='sergiopenagos').first()
-    DEFAULT_PASSWORD = os.getenv("DEFAULT_PASSWORD")
     DEFAULT_USER = os.getenv("DEFAULT_USER")
+    DEFAULT_PASSWORD = os.getenv("DEFAULT_PASSWORD")
     DEFAULT_EMAIL = os.getenv("DEFAULT_EMAIL")
+
+    existing_user = session.query(User).filter_by(username=DEFAULT_USER).first()
     if existing_user is None:
         valid, error = validate_password_complexity(DEFAULT_PASSWORD)
         if not valid:
