@@ -1,9 +1,9 @@
 <template>
-  <div class="services-offer py-5">
+  <section class="services-offer py-5">
     <div class="container">
       <h2 class="title">My Freelance Services</h2>
       <div class="columns is-multiline">
-        <div
+        <article
           class="column is-half"
           data-aos="fade-up"
           v-for="service in services"
@@ -23,10 +23,10 @@
               </div>
             </div>
           </div>
-        </div>
+        </article>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script lang="ts">

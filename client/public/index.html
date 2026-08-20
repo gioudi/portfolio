@@ -1,18 +1,95 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <title>Sergio Penagos — Software Engineer | Portfolio</title>
+    <meta name="description" content="Software Engineer specializing in scalable web applications, design systems, and component-driven development. Proficient in JavaScript, React, Vue, TypeScript, and Node.js. Bilingual (EN/ES) with leadership experience.">
+    <meta name="keywords" content="software engineer, frontend developer, react, vue, typescript, javascript, node.js, design systems, portfolio, bogota, colombia">
+    <meta name="author" content="Sergio Penagos">
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://gioudi.github.io/portfolio/">
+
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
-    <!-- In your HTML file or main application file -->
+    <link rel="apple-touch-icon" href="<%= BASE_URL %>img/icons/apple-touch-icon-152x152.png">
+    <link rel="manifest" href="<%= BASE_URL %>manifest.json">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Sergio Penagos — Software Engineer | Portfolio">
+    <meta property="og:description" content="Software Engineer specializing in scalable web applications, design systems, and component-driven development. Bilingual (EN/ES) with leadership experience.">
+    <meta property="og:url" content="https://gioudi.github.io/portfolio/">
+    <meta property="og:site_name" content="Sergio Penagos — Software Engineer Portfolio">
+    <meta property="og:image" content="https://gioudi.github.io/portfolio/img/og-preview.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sergio Penagos — Software Engineer | Portfolio">
+    <meta name="twitter:description" content="Software Engineer specializing in scalable web applications, design systems, and component-driven development. Bilingual (EN/ES) with leadership experience.">
+    <meta name="twitter:image" content="https://gioudi.github.io/portfolio/img/og-preview.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Sergio Penagos",
+      "jobTitle": "Software Engineer",
+      "description": "Software Engineer specializing in scalable web applications, design systems, and component-driven development.",
+      "url": "https://gioudi.github.io/portfolio/",
+      "image": "https://gioudi.github.io/portfolio/img/og-preview.png",
+      "sameAs": [
+        "https://www.linkedin.com/in/analyst-sergio-penagos/",
+        "https://github.com/gioudi"
+      ],
+      "knowsAbout": [
+        "Software Engineering",
+        "Frontend Development",
+        "React",
+        "Vue.js",
+        "TypeScript",
+        "JavaScript",
+        "Node.js",
+        "Design Systems",
+        "Component-Driven Development",
+        "Agile/Scrum",
+        "Team Leadership"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bogotá",
+        "addressRegion": "Capital District",
+        "addressCountry": "CO"
+      },
+      "nationality": {
+        "@type": "Country",
+        "name": "Colombia"
+      },
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "educationalLevel": "Associate Degree",
+          "name": "Software Analysis and Development"
+        }
+      ]
+    }
+    </script>
+
+    <!-- Preconnect for external CDNs -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
   </head>
   <body>
     <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <strong>This portfolio requires JavaScript to function. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->

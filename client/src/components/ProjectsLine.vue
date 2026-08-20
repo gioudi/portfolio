@@ -1,25 +1,20 @@
 <template>
-  <div class="py-5" data-aos="fade-left">
+  <section class="py-5" data-aos="fade-left">
     <h2 class="title is-2 has-text-centered">My Recent Work</h2>
     <div
       class="columns is-variable is-1-mobile is-0-tablet is-3-desktop is-multiline mb-5"
     >
-      <div
+      <article
         class="column is-half-tablet is-one-quarter-desktop"
         v-for="(project, index) in projects"
         :key="index"
       >
         <div class="card container-image" data-aos="fade-right">
           <figure class="container-image__background">
-            <!--   <div
-              class="drop-down-window px-3 is-flex is-align-items-center is-justify-content-center has-small-text has-text-black"
-            >
-              {{ project.techStack }}
-            </div> -->
             <img
               class="container-image__background--image"
               :src="require(`@/assets/${project.image}`)"
-              :alt="project.image_alt"
+              :alt="`${project.title} project screenshot`"
             />
           </figure>
 
@@ -36,13 +31,13 @@
             </button>
           </div>
         </div>
-      </div>
+      </article>
     </div>
     <h2 class="title is-2 has-text-centered">Other projects</h2>
     <div
       class="columns is-variable is-1-mobile is-0-tablet is-3-desktop is-multiline"
     >
-      <div
+      <article
         class="column is-half-tablet is-one-quarter-desktop"
         v-for="(project, index) in otherProjects"
         :key="index"
@@ -75,9 +70,9 @@
             </a>
           </div>
         </div>
-      </div>
+      </article>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">
