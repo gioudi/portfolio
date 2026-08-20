@@ -1,10 +1,10 @@
 <template>
-  <div class="container pt-5">
-    <div class="column">
+  <main class="container pt-5">
+    <section class="column">
       <h1 class="title is-1 has-text-weight-bold has-text-centered">
         About "{{ project?.title }}"
       </h1>
-      <div class="project-detail">
+      <article class="project-detail">
         <div class="project-info mb-3">
           <h2 class="subtitle is-2 has-text-weight-medium">
             {{ project?.title }}
@@ -14,7 +14,7 @@
             <strong>Tech Stack:</strong> {{ project?.techStack }}
           </p>
           <a :href="project?.site" class="button is-hoverable is-small mr-3"
-            >Get a see..</a
+            >Go to site</a
           >
           <router-link to="/" class="button is-hoverable is-small"
             >Go Home</router-link
@@ -24,12 +24,13 @@
           <h2 class="subtitle is-2 has-text-weight-medium">Evidence:</h2>
           <Carousel :items-to-show="1">
             <Slide v-for="(media, index) in project?.media" :key="index">
-              <img
-                v-if="media.type === 'image'"
-                :src="require(`@/assets/${media.url}`)"
-                alt="Project Image"
-              />
-              <!-- <video v-else :src="media?.url" controls></video> -->
+              <figure>
+                <img
+                  v-if="media.type === 'image'"
+                  :src="require(`@/assets/${media.url}`)"
+                  :alt="`${project?.title} project screenshot ${index + 1}`"
+                />
+              </figure>
             </Slide>
             <template #addons>
               <Navigation />
@@ -42,10 +43,12 @@
           More details..
         </h2>
         <div class="columns is-multiline">
-          <div class="column" data-aos="fade-right">
+          <article class="column" data-aos="fade-right">
             <div class="card">
               <div class="card-content">
-                <p class="title is-4 has-text-weight-bold">Responsibilities</p>
+                <h3 class="title is-4 has-text-weight-bold">
+                  Responsibilities
+                </h3>
                 <ul>
                   <li
                     v-for="responsibility in project?.responsibilities"
@@ -56,13 +59,12 @@
                 </ul>
               </div>
             </div>
-          </div>
+          </article>
 
-          <!-- Topics Card -->
-          <div class="column" data-aos="fade-left">
+          <article class="column" data-aos="fade-left">
             <div class="card">
               <div class="card-content">
-                <p class="title is-4 has-text-weight-bold">Topics</p>
+                <h3 class="title is-4 has-text-weight-bold">Topics</h3>
                 <ul>
                   <li v-for="topic in project?.topics" :key="topic">
                     {{ topic }}
@@ -70,11 +72,11 @@
                 </ul>
               </div>
             </div>
-          </div>
+          </article>
         </div>
-      </div>
-    </div>
-  </div>
+      </article>
+    </section>
+  </main>
 </template>
 
 <script setup lang="ts">

@@ -1,10 +1,10 @@
 <template>
-  <div class="contact py-5" data-aos="fade-down">
+  <section class="contact py-5" data-aos="fade-down">
     <h2 class="title is-2 has-text-centered mb-5">Contact</h2>
     <p class="mb-2">
       Let's connect! Reach out to me through the following channels:
     </p>
-    <div
+    <nav
       class="contact-options is-flex is-justify-content-center"
       data-aos="fade-left"
     >
@@ -30,8 +30,8 @@
         ><span class="icon is-large is-hoverable is-size-3"
           ><i class="fab fa-github"></i></span
       ></a>
-    </div>
-  </div>
+    </nav>
+  </section>
 </template>
 
 <script setup>

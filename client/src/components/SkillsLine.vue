@@ -1,8 +1,7 @@
 <template>
-  <div class="skills py-5" data-aos="fade-up">
+  <section class="skills py-5" data-aos="fade-up">
     <h2 class="title is-2 has-text-centered">Skills</h2>
     <div class="columns is-multiline">
-      <!-- Backend Section -->
       <div
         class="skills-section column"
         data-aos="fade-up"
@@ -18,17 +17,11 @@
           :data-aos-delay="skill.delay"
         >
           <div class="container-icon is-flex is-align-items-center">
-            <i
-              :class="` mr-3 colored ${skill.icon}`"
-              alt="Skill Icon"
-              class=""
-            ></i
-            >{{ skill.name }}
+            <i :class="` mr-3 colored ${skill.icon}`"></i>{{ skill.name }}
           </div>
         </div>
       </div>
 
-      <!-- Frontend Section -->
       <div
         class="skills-section column"
         data-aos="fade-up"
@@ -44,17 +37,12 @@
           :data-aos-delay="skill.delay"
         >
           <div class="container-icon is-flex is-align-items-center">
-            <i
-              :class="`mr-3 colored ${skill.icon}`"
-              alt="Skill Icon"
-              class=""
-            ></i>
+            <i :class="`mr-3 colored ${skill.icon}`"></i>
             {{ skill.name }}
           </div>
         </div>
       </div>
 
-      <!-- Tools Section -->
       <div
         class="skills-section column"
         data-aos="fade-up"
@@ -69,17 +57,13 @@
           :data-aos-delay="tool.delay"
         >
           <div class="container-icon is-flex is-align-items-center">
-            <i
-              :class="`mr-3 colored ${tool.icon}`"
-              alt="Tool Icon"
-              class=""
-            ></i>
+            <i :class="`mr-3 colored ${tool.icon}`"></i>
             {{ tool.name }}
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup>

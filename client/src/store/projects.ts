@@ -16,6 +16,7 @@ export interface LocalProject {
   title: string;
   description: string;
   image: string;
+  image_alt: string;
   techStack: string;
   media: MediaItem[];
   site: string;
@@ -73,6 +74,7 @@ export const useProjectStore = defineStore({
         description:
           "As a Mid Frontend Developer, I collaborated with an international developer team to develop a software solution for INTERCAM bank. Our project focused on creating a public site with multi-language support. ",
         image: "INTERCAM.png",
+        image_alt: "INTERCAM banking platform project screenshot",
         techStack:
           "Html5, Sass, Vue, TypeScript, Github, CMS Modyo, Storybook, Micro Front ends, Scrum",
         media: [
@@ -95,6 +97,7 @@ export const useProjectStore = defineStore({
         description:
           "As a Mid Frontend Developer, I collaborated with an international developer team to develop a software solution for MIFEL bank. Our project focused on creating a private site with multi-language support. This site was designed to manage various aspects of clients' accounts, including cards, checkbooks, clarifications, movements, checks, debts, credits, and connectivity to DIMO.",
         image: "MIFEL.png",
+        image_alt: "MIFEL banking platform project screenshot",
         techStack:
           "Html5, Sass, Vue, TypeScript, Github, CMS Modyo, Storybook, Micro Front ends, Scrum",
         media: [
@@ -121,6 +124,7 @@ export const useProjectStore = defineStore({
         description:
           "I have collaborated as a Mid Frontend Developer in an international project that aimed to create a software solution for CFG. This experience involved working closely with multicultural teams from various countries, providing valuable insights into effective collaboration on similar projects.",
         image: "DANDO.png",
+        image_alt: "CFG DANDO platform project screenshot",
         techStack:
           "Html5, Sass, Vue, TypeScript, Github, CMS Modyo, Storybook, Micro Front ends, Scrum",
         media: [
@@ -147,6 +151,7 @@ export const useProjectStore = defineStore({
         description:
           "As a Junior Frontend Developer, I collaborated with a developer team to create a software solution for PriceSmart Colombia. Our project, called DEONE, encompassed developing both a website and a mobile app. The platform aimed to provide users with an Express Courier service, allowing them to send packages and request various other services.",
         image: "DEONE.png",
+        image_alt: "DEONE Express Courier mobile app screenshot",
         techStack:
           "Html5, Sass, Vue, Laravel 7, Jquery, Bitbucket, Node, Scrum, Native",
         media: [
@@ -177,6 +182,7 @@ export const useProjectStore = defineStore({
         description:
           "When I was working on the Kairos web application, I played a crucial role in developing new features, fixing bugs, and maintaining the codebase. My responsibilities included front-end development of web apps using JavaScript, TypeScript, CSS, Sass, and HTML. One of the projects I worked on was Kairos, a web app in .NET for managing PRIMAX projects in the hydrocarbon industry.",
         image: "KAIROS.png",
+        image_alt: "KAIROS PRIMAX project management platform screenshot",
         techStack:
           ".NET, Sass, Jquery, Materialize, Aws, Scrum, TypeScript, MVC",
         media: [
@@ -208,7 +214,7 @@ export const useProjectStore = defineStore({
         techStack: "Html5, Sass, TypeScript, Github, Php",
         description:
           "Bogota Beer Company website where every client could see and get information about company products, offers, services and office.",
-        image_alt: "bbc",
+        image_alt: "Bogota Beer Company website screenshot",
         site: "https://www.bbccerveceria.com/",
       },
       {
@@ -217,7 +223,7 @@ export const useProjectStore = defineStore({
         techStack: "Html5, Sass, TypeScript, Github, Php",
         kind: "Work",
         site: "https://www.stellaartois.co/",
-        image_alt: "google",
+        image_alt: "Stella Artois Colombian website screenshot",
 
         description:
           "Stella artois colombian website where every client could see and get information about company products, offers, services and office.",
@@ -228,7 +234,7 @@ export const useProjectStore = defineStore({
         techStack: "Html5, Sass, JavaScript, Github, Vue",
         kind: "Personal",
         site: "https://gioudi.github.io/landing-page-google/",
-        image_alt: "google",
+        image_alt: "Google landing page clone screenshot",
 
         description:
           "Template about Google's landing page, where you can see a dropdown tools and a landing page mobile version,  built using vue.",
@@ -239,7 +245,7 @@ export const useProjectStore = defineStore({
         techStack: "React, Css3, JavaScript, TypeScript, Github",
         kind: "Personal",
         site: "https://gioudi.github.io/react-app-weather/",
-        image_alt: "weather",
+        image_alt: "Weather forecast application screenshot",
 
         description:
           "Weather website where a person would check a specific city information, this information is getting from a free Api weather using axios and typescript.",
