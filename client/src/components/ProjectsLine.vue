@@ -13,8 +13,10 @@
           <figure class="container-image__background">
             <img
               class="container-image__background--image"
-              :src="require(`@/assets/${project.image}`)"
+              :src="project.image"
               :alt="`${project.title} project screenshot`"
+              loading="lazy"
+              decoding="async"
             />
           </figure>
 
@@ -51,8 +53,10 @@
             </div>
             <img
               class="container-image__background--image"
-              :src="require(`@/assets/${project.image}`)"
+              :src="project.image"
               :alt="project.image_alt"
+              loading="lazy"
+              decoding="async"
             />
           </figure>
 

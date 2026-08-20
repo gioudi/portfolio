@@ -1,0 +1,17 @@
+{
+  "name": "Sergio Penagos — Software Engineer Portfolio",
+  "short_name": "Portfolio",
+  "description": "Portfolio of Sergio Penagos — Software Engineer specialized in Design Systems, bilingual EN/ES",
+  "start_url": "/portfolio/",
+  "display": "standalone",
+  "background_color": "#f2f2f2",
+  "theme_color": "#333333",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    }
+  ]
+}

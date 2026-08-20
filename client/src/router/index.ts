@@ -1,8 +1,4 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import HomeView from "../views/HomeView.vue";
-import ProjectDetailView from "../views/ProjectDetailView.vue";
-import LoginView from "@/views/LoginView.vue";
-import CreateProjectView from "@/views/CreateProjectView.vue";
 import { useAuthStore } from "@/store/auth";
 
 const BASE_TITLE = "Sergio Penagos — Software Engineer | Portfolio";
@@ -11,7 +7,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "home",
-    component: HomeView,
+    component: () => import("../views/HomeView.vue"),
     meta: {
       title: BASE_TITLE,
       description:
@@ -21,7 +17,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/login",
     name: "login",
-    component: LoginView,
+    component: () => import("@/views/LoginView.vue"),
     meta: {
       title: `Login — ${BASE_TITLE}`,
       description: "Login to manage portfolio projects.",
@@ -31,7 +27,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/project/:id",
     name: "projectDetail",
-    component: ProjectDetailView,
+    component: () => import("../views/ProjectDetailView.vue"),
     meta: {
       title: `Project — ${BASE_TITLE}`,
       description:
@@ -41,7 +37,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/create-project",
     name: "createProject",
-    component: CreateProjectView,
+    component: () => import("@/views/CreateProjectView.vue"),
     meta: {
       title: `Create Project — ${BASE_TITLE}`,
       description: "Create a new portfolio project.",
