@@ -27,8 +27,10 @@
               <figure>
                 <img
                   v-if="media.type === 'image'"
-                  :src="require(`@/assets/${media.url}`)"
+                  :src="media.url"
                   :alt="`${project?.title} project screenshot ${index + 1}`"
+                  loading="lazy"
+                  decoding="async"
                 />
               </figure>
             </Slide>
