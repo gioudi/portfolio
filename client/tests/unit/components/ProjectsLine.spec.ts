@@ -51,15 +51,14 @@ describe("ProjectsLine.vue", () => {
     expect(wrapper.text()).toContain(en.projects.goToWeb);
   });
 
-  it("uses a multiline responsive grid (half on tablet, quarter on desktop)", () => {
+  it("uses a centered flex grid with quarter-width cards on desktop", () => {
     const wrapper = mountGrid();
-    const grid = wrapper.find(".columns");
-    expect(grid.classes()).toContain("is-multiline");
+    const grids = wrapper.findAll(".projects-grid");
+    expect(grids.length).toBe(2);
+    expect(grids[0].classes()).toContain("projects-grid");
 
     wrapper.findAll("article").forEach((card) => {
-      expect(card.classes()).toContain("column");
-      expect(card.classes()).toContain("is-half-tablet");
-      expect(card.classes()).toContain("is-one-quarter-desktop");
+      expect(card.classes()).toContain("project-cell");
     });
   });
 
