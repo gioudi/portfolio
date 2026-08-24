@@ -161,25 +161,15 @@ export default {
     cta: "Let's talk",
     hourly: "/h",
     offers: {
-      software: {
+      standard: {
         name: "Software Engineering & Consulting",
         blurb:
-          "End-to-end delivery: robust frontend (React/Vue/Angular + TypeScript) backed by solid APIs.",
-      },
-      systems: {
-        name: "Design Systems",
-        blurb:
-          "Tokens, component libraries and Storybook docs your whole team can build on.",
-      },
-      architecture: {
-        name: "Frontend Architecture",
-        blurb:
-          "Scalable app architecture and micro-frontends with performance and accessibility from day one.",
+          "Full product delivery: frontend architecture, Design Systems, APIs, team leadership and Scrum — everything your project needs.",
       },
       ai: {
-        name: "AI-Assisted Engineering",
+        name: "AI-Boosted Delivery",
         blurb:
-          "Claude Code / Copilot workflows embedded in your SDLC — ship faster without lowering quality.",
+          "Same scope, same quality — supercharged with Claude Code / Copilot workflows. Want less time? Pay more.",
       },
     },
   },

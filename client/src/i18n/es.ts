@@ -161,25 +161,15 @@ export default {
     cta: "Hablemos",
     hourly: "/h",
     offers: {
-      software: {
+      standard: {
         name: "Ingeniería de Software & Consultoría",
         blurb:
-          "Entrega de punta a punta: frontend sólido (React/Vue/Angular + TypeScript) respaldado por APIs confiables.",
-      },
-      systems: {
-        name: "Design Systems",
-        blurb:
-          "Tokens, librerías de componentes y documentación Storybook sobre los que todo tu equipo puede construir.",
-      },
-      architecture: {
-        name: "Arquitectura Frontend",
-        blurb:
-          "Arquitectura escalable y micro-frontends con rendimiento y accesibilidad desde el día uno.",
+          "Entrega completa del producto: arquitectura frontend, Design Systems, APIs, liderazgo de equipo y Scrum — todo lo que tu proyecto necesita.",
       },
       ai: {
-        name: "Ingeniería Asistida por IA",
+        name: "Entrega Potenciada con IA",
         blurb:
-          "Flujos Claude Code / Copilot integrados en tu SDLC — entrega más rápido sin bajar la calidad.",
+          "Mismo alcance, misma calidad — acelerados con flujos Claude Code / Copilot. ¿La quieres más rápido? Paga más.",
       },
     },
   },

@@ -36,13 +36,11 @@ import { useI18n } from "vue-i18n";
 
 const { t } = useI18n();
 
-const offerKeys = ["software", "systems", "architecture", "ai"] as const;
+const offerKeys = ["standard", "ai"] as const;
 
 const prices: Record<string, string> = {
-  software: "$35",
-  systems: "$35",
-  architecture: "$35",
-  ai: "$45",
+  standard: "$35",
+  ai: "$50",
 };
 </script>
 

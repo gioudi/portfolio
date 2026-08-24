@@ -12,26 +12,28 @@
   </p>
   <section class="container timeline-wrap">
     <div class="timeline-scroll">
-      <article
-        v-for="(key, index) in eventKeys"
-        :key="key"
-        class="timeline-block"
-        :class="{
-          'timeline-block-right': index % 2 !== 0,
-          'timeline-block-left': index % 2 === 0,
-        }"
-      >
-        <div class="marker"></div>
-        <div class="timeline-content" data-aos="fade-up">
-          <i :class="eventIcon(key)"></i>
-          <p class="has-text-weight-bold">
-            {{ t(`timeline.events.${key}.title`) }}
-            <small>{{ t(`timeline.events.${key}.date`) }}</small>
-          </p>
-          <span>{{ t(`timeline.events.${key}.subtitle`) }}</span>
-          <p>{{ t(`timeline.events.${key}.description`) }}</p>
-        </div>
-      </article>
+      <div class="timeline">
+        <article
+          v-for="(key, index) in eventKeys"
+          :key="key"
+          class="timeline-block"
+          :class="{
+            'timeline-block-right': index % 2 !== 0,
+            'timeline-block-left': index % 2 === 0,
+          }"
+        >
+          <div class="marker"></div>
+          <div class="timeline-content" data-aos="fade-up">
+            <i :class="eventIcon(key)"></i>
+            <p class="has-text-weight-bold">
+              {{ t(`timeline.events.${key}.title`) }}
+              <small>{{ t(`timeline.events.${key}.date`) }}</small>
+            </p>
+            <span>{{ t(`timeline.events.${key}.subtitle`) }}</span>
+            <p>{{ t(`timeline.events.${key}.description`) }}</p>
+          </div>
+        </article>
+      </div>
     </div>
     <div class="timeline-fade" aria-hidden="true"></div>
   </section>
@@ -93,18 +95,6 @@ const eventIcon = (key: string) => eventIcons[key] ?? "fas fa-circle";
   mask-image: linear-gradient(to bottom, black 82%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 82%, transparent 100%);
   padding-bottom: 4rem;
-  position: relative;
-
-  &:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 50%;
-    margin-left: -0.0625rem;
-    height: 100%;
-    border: 0.0625rem dashed $info;
-    z-index: 1;
-  }
 
   &::-webkit-scrollbar {
     width: 6px;
@@ -134,6 +124,17 @@ const eventIcon = (key: string) => eventIcons[key] ?? "fas fa-circle";
   margin: 0 auto;
   position: relative;
   overflow: hidden;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -0.0625rem;
+    height: 100%;
+    border: 0.0625rem dashed $info;
+    z-index: 1;
+  }
 }
 
 .timeline-block {
@@ -192,7 +193,7 @@ const eventIcon = (key: string) => eventIcons[key] ?? "fas fa-circle";
     width: 100%;
     padding-left: 0.75rem;
   }
-  .timeline-scroll:before {
+  .timeline:before {
     left: 0.5rem;
     margin-left: 0;
   }

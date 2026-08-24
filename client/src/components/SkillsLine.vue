@@ -15,7 +15,7 @@
         <div
           v-for="skill in group.items"
           :key="skill.name"
-          class="is-flex is-align-items-center"
+          class="skill-row is-flex is-align-items-center"
           data-aos="fade-up"
           :data-aos-delay="skill.delay"
         >
@@ -83,12 +83,18 @@ const skillGroups = [
 </script>
 
 <style lang="scss">
+.skill-row {
+  margin-bottom: 0.6rem;
+}
+
 .container-icon {
   filter: grayscale(100%);
   opacity: 0.72;
   transition: filter 0.3s ease-in-out, opacity 0.3s ease-in-out,
     transform 0.3s ease-in-out;
   cursor: default;
+  position: relative;
+  z-index: 1;
 
   i {
     font-size: 1.25rem;
@@ -98,7 +104,8 @@ const skillGroups = [
   &:hover {
     filter: grayscale(0);
     opacity: 1;
-    transform: scale(1.2);
+    transform: scale(1.15);
+    z-index: 5;
 
     i {
       text-shadow: 0 0 12px rgba(51, 51, 51, 0.35);

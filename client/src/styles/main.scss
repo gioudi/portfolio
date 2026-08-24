@@ -82,9 +82,71 @@ footer {
   }
 }
 
-.input {
-  background-color: $background;
+.input,
+.textarea {
+  background-color: #fff;
   color: $foreground;
+  border: 1px solid rgba(51, 51, 51, 0.28);
+  border-radius: 4px;
+  box-shadow: none;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+  &::placeholder {
+    color: rgba(51, 51, 51, 0.4);
+  }
+
+  &:hover {
+    border-color: rgba(51, 51, 51, 0.45);
+  }
+
+  &:focus,
+  &:focus-visible {
+    border-color: $primary;
+    box-shadow: 0 0 0 0.125rem rgba(51, 51, 51, 0.15);
+  }
+
+  &.is-danger {
+    border-color: $form-error;
+
+    &:focus {
+      border-color: $form-error;
+      box-shadow: 0 0 0 0.125rem rgba(214, 69, 69, 0.18);
+    }
+  }
+}
+
+.help.is-danger,
+.has-text-danger {
+  color: $form-error !important;
+}
+
+.label {
+  color: $foreground;
+}
+
+.select select {
+  background-color: #fff;
+  border-color: rgba(51, 51, 51, 0.28);
+}
+
+.multiselect__tags {
+  border: 1px solid rgba(51, 51, 51, 0.28);
+  border-radius: 4px;
+  background-color: #fff;
+  transition: border-color 0.2s ease-in-out;
+
+  &:hover {
+    border-color: rgba(51, 51, 51, 0.45);
+  }
+}
+
+.multiselect--active .multiselect__tags {
+  border-color: $primary;
+  box-shadow: 0 0 0 0.125rem rgba(51, 51, 51, 0.15);
+}
+
+.filepond--root {
+  margin-bottom: 0;
 }
 
 a {
