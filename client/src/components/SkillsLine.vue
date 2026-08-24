@@ -7,7 +7,7 @@
       <div
         v-for="group in skillGroups"
         :key="group.titleKey"
-        class="skills-section column is-half-mobile is-3-desktop is-half-tablet"
+        class="skills-section column is-half-mobile is-3-tablet is-3-desktop"
         data-aos="fade-up"
       >
         <h3 class="subtitle is-4">{{ t(group.titleKey) }}</h3>

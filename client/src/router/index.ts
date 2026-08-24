@@ -59,6 +59,8 @@ router.beforeEach((to, from, next) => {
 
   if (to.meta.requiresAuth && !authStore.loggedIn) {
     next("/login");
+  } else if (to.name === "login" && authStore.loggedIn) {
+    next("/create-project");
   } else {
     next();
   }
