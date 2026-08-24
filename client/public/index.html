@@ -5,6 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
+    <!-- Restore deep link after GitHub Pages 404.html bounce -->
+    <script>
+      (function () {
+        var r = sessionStorage.getItem("spa-redirect");
+        if (!r) return;
+        sessionStorage.removeItem("spa-redirect");
+        history.replaceState(null, "", r);
+      })();
+    </script>
+
     <title>Sergio Penagos — Software Engineer | Portfolio</title>
     <meta name="description" content="Software Engineer specializing in scalable web applications, design systems, and component-driven development. Proficient in JavaScript, React, Vue, TypeScript, and Node.js. Bilingual (EN/ES) with leadership experience.">
     <meta name="keywords" content="software engineer, frontend developer, react, vue, typescript, javascript, node.js, design systems, portfolio, bogota, colombia">
