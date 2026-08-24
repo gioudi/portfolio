@@ -1,26 +1,38 @@
 <template>
-  <section class="services-offer py-5">
+  <section class="services-offer py-4">
     <div class="container">
-      <h2 class="title">My Freelance Services</h2>
-      <div class="columns is-multiline">
+      <h2 id="services" class="title is-2 has-text-centered">
+        {{ t("services.heading") }}
+      </h2>
+      <div class="columns is-multiline is-mobile is-variable is-4">
         <article
-          class="column is-half"
+          v-for="(key, index) in serviceKeys"
+          :key="key"
+          class="column is-full-mobile is-half-tablet is-one-quarter-desktop"
           data-aos="fade-up"
-          v-for="service in services"
-          :key="service.title"
+          :data-aos-delay="index * 100"
         >
-          <div class="card">
+          <div class="card service-card">
             <div class="card-content">
-              <p class="title">{{ service.title }}</p>
-              <p class="subtitle">{{ service.description }}</p>
-              <p class="price">{{ service.price }}</p>
-              <div class="features">
-                <ul>
-                  <li v-for="feature in service.features" :key="feature">
-                    {{ feature }}
-                  </li>
-                </ul>
-              </div>
+              <p class="title is-5">
+                {{ t(`services.items.${key}.title`) }}
+              </p>
+              <p class="subtitle is-6">
+                {{ t(`services.items.${key}.description`) }}
+              </p>
+              <p class="price tag is-medium has-text-weight-bold">
+                {{ t(`services.items.${key}.price`) }}
+              </p>
+              <ul class="features">
+                <li v-for="feature in featuresOf(key)" :key="feature">
+                  <span class="icon is-small mr-1"
+                    ><i class="fas fa-check"></i></span
+                  >{{ feature }}
+                </li>
+              </ul>
+              <a href="#contact" class="button is-small mt-3">
+                {{ t("services.cta") }}
+              </a>
             </div>
           </div>
         </article>
@@ -29,71 +41,44 @@
   </section>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+import { useI18n } from "vue-i18n";
 
-export default defineComponent({
-  data() {
-    return {
-      services: [
-        {
-          title: "Frontend Development",
-          description: "Customized solutions for your web projects.",
-          price: "$25 per hour",
-          features: [
-            "Responsive design",
-            "Cross-browser compatibility",
-            "SEO optimization",
-          ],
-        },
-        {
-          title: "Vue.js / React.js Development",
-          description: "Building dynamic and interactive web applications.",
-          price: "$30 per hour",
-          features: ["Components", "State management", "API integration"],
-        },
-      ],
-    };
-  },
-});
+const { t, tm } = useI18n();
+
+const serviceKeys = ["frontend", "systems", "fullstack", "ai"];
+
+const featuresOf = (key: string) => {
+  const nodes = tm(`services.items.${key}.features`) as unknown[];
+  return nodes.map((node) => String(node));
+};
 </script>
-<style scoped>
-.services-offer {
-  padding: 2rem 0;
-}
 
-.card {
-  margin-bottom: 1.5rem;
+<style scoped lang="scss">
+.service-card {
+  height: 100%;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+  }
 }
 
-.card-content {
-  padding: 1.5rem;
-}
-
-.title {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.subtitle {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-}
-
-.price {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
+.service-card .card-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .features {
-  margin-top: 1rem;
-}
+  margin-top: auto;
 
-.features ul {
-  list-style-type: disc;
-  margin-left: 2rem;
+  li {
+    list-style-type: none;
+    margin-bottom: 0.25rem;
+  }
 }
 </style>

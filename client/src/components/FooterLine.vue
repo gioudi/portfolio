@@ -2,9 +2,13 @@
   <footer class="footer">
     <div class="container">
       <div class="columns">
-        <!-- Personal Information -->
         <div class="column has-text-centered">
-          <p>&copy; {{ t("footer.name") }}. All rights reserved.</p>
+          <p>
+            &copy; {{ year }} {{ t("footer.name") }}. {{ t("footer.rights") }}
+          </p>
+          <p class="is-size-7 has-text-grey mt-1">
+            {{ t("footer.builtWith") }}
+          </p>
         </div>
       </div>
     </div>
@@ -18,7 +22,8 @@ import { useI18n } from "vue-i18n";
 export default defineComponent({
   setup() {
     const { t } = useI18n();
-    return { t };
+    const year = new Date().getFullYear();
+    return { t, year };
   },
 });
 </script>
