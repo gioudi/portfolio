@@ -8,13 +8,15 @@
 </template>
 
 <script setup>
-import { usePinia } from "pinia";
+import { computed } from "vue";
+import { storeToRefs } from "pinia";
+import { useThemeStore } from "../store/theme";
 
-const pinia = usePinia();
-const isDarkTheme = pinia.state.theme.isDarkTheme;
+const store = useThemeStore();
+const { isDarkTheme } = storeToRefs(store);
 
 const toggleTheme = () => {
-  pinia.state.theme.toggleTheme();
+  store.toggleTheme();
 };
 </script>
 

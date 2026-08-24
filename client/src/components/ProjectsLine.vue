@@ -94,8 +94,26 @@ const viewProjectDetails = (id: string) => {
 
 <style lang="scss" scoped>
 .description {
-  height: 2.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-wrap: wrap;
+}
+
+.column > .card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    .button {
+      margin-top: auto;
+      align-self: flex-start;
+    }
+  }
 }
 </style>
