@@ -5,6 +5,8 @@ services:
   - type: web
     name: portfolio-api
     runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
     plan: free
     healthCheckPath: /health
     autoDeploy: true
