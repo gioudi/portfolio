@@ -1,13 +1,22 @@
 <template>
-  <button @click="toggleLanguage" class="language-toggle-button">
-    <span class="icon">
-      <i v-if="currentLanguage === 'en'" class="fas fa-flag-usa"></i>
-      <i v-else class="fas fa-flag"></i>
+  <button
+    @click="toggleLanguage"
+    class="language-toggle-button button is-small"
+    :title="
+      currentLanguage === 'en' ? 'Switch to Español' : 'Cambiar a English'
+    "
+  >
+    <span class="icon-text">
+      <span class="icon">
+        <i v-if="currentLanguage === 'en'" class="fas fa-language"></i>
+        <i v-else class="fas fa-language"></i>
+      </span>
+      <span>{{ currentLanguage === "en" ? "ES" : "EN" }}</span>
     </span>
   </button>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { useLanguageStore } from "../store/language";
@@ -15,32 +24,22 @@ import { useLanguageStore } from "../store/language";
 const i18n = useI18n();
 const languageStore = useLanguageStore();
 
-const currentLanguage = computed(() => languageStore.currentLanguage);
+const currentLanguage = computed(() => languageStore.currentLanguage as string);
 
 const toggleLanguage = () => {
   const newLanguage = currentLanguage.value === "en" ? "es" : "en";
   languageStore.setCurrentLanguage(newLanguage);
   i18n.locale.value = newLanguage;
+  localStorage.setItem("locale", newLanguage);
+  document.documentElement.setAttribute("lang", newLanguage);
 };
 </script>
 
 <style scoped lang="scss">
 .language-toggle-button {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-
-  .icon {
-    font-size: 1.5rem;
-    color: #333; // Adjust the color based on your design
-    transition: color 0.3s ease-in-out;
-  }
-
-  &:hover .icon {
-    color: #ff9800; // Change the color on hover
+  .icon-text {
+    font-weight: 700;
+    letter-spacing: 0.03em;
   }
 }
 </style>
