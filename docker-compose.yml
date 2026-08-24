@@ -15,10 +15,11 @@ services:
       POSTGRES_USER: portfolio
       POSTGRES_PASSWORD: portfolio_dev_pw
       ALLOWED_ORIGINS: http://localhost:8080,http://127.0.0.1:8080
-      # Seed user must satisfy the Phase-2b password complexity validator.
-      DEFAULT_USER: admin
-      DEFAULT_EMAIL: admin@local.dev
-      DEFAULT_PASSWORD: Portfolio-dev-2026!
+      # Seed credentials come from the git-ignored root .env (LOCAL ONLY).
+      # Empty/weak values make bootstrap skip seeding loudly instead of leaking secrets.
+      DEFAULT_USER: ${DEFAULT_USER:-}
+      DEFAULT_EMAIL: ${DEFAULT_EMAIL:-}
+      DEFAULT_PASSWORD: ${DEFAULT_PASSWORD:-}
     depends_on:
       db:
         condition: service_healthy

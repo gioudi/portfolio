@@ -115,9 +115,10 @@
                   <Field
                     id="responsibilities"
                     name="responsibilities"
-                    class="input"
+                    as="textarea"
+                    class="textarea"
                     v-model="responsibilities"
-                    type="text"
+                    rows="4"
                   />
                   <ErrorMessage
                     name="responsibilities"
@@ -192,6 +193,7 @@ import { useProjectStore } from "../store/projects";
 import Multiselect from "vue-multiselect";
 import FooterLine from "../components/FooterLine.vue";
 import vueFilePond from "vue-filepond";
+import { TECHNOLOGY_OPTIONS, TAG_OPTIONS } from "../constants/technologies";
 
 import "filepond/dist/filepond.min.css";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css";
@@ -206,29 +208,9 @@ const FilePond = vueFilePond(
 const { t } = useI18n();
 const router = useRouter();
 
-const technologiesOptions = [
-  { name: "Vue.js", language: "JavaScript" },
-  { name: "React", language: "JavaScript" },
-  { name: "Angular", language: "JavaScript" },
-  { name: "Node.js", language: "JavaScript" },
-  { name: "Python", language: "Python" },
-  { name: "Flask", language: "Python" },
-  { name: "TypeScript", language: "JavaScript" },
-  { name: "Laravel", language: "PHP" },
-  { name: "PostgreSQL", language: "SQL" },
-  { name: "Docker", language: "DevOps" },
-];
+const technologiesOptions = TECHNOLOGY_OPTIONS;
 
-const tagsOptions = [
-  "public site",
-  "private site",
-  "onboarding",
-  "design components",
-  "fullstack",
-  "frontend",
-  "backend",
-  "personal",
-];
+const tagsOptions = TAG_OPTIONS;
 
 const { handleSubmit, resetForm, errors } = useForm({
   validationSchema: yup.object({
@@ -367,3 +349,14 @@ const createProject = handleSubmit(
 </script>
 
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
+
+<style scoped lang="scss">
+.create-project-form .field {
+  margin-bottom: 1.25rem;
+}
+
+.textarea {
+  min-height: 6rem;
+  resize: vertical;
+}
+</style>

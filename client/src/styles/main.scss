@@ -74,11 +74,23 @@ footer {
 
 
 .button {
-  background-color: $primary; 
+  background-color: $primary;
   color: $background;
   border-color: $primary;
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   &:hover {
     color: $background;
+  }
+
+  &.is-small {
+    min-height: 42px;
+    height: 42px;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 
