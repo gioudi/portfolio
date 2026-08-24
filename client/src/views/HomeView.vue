@@ -69,10 +69,6 @@ const openPdfPreview = () => {
   padding-top: 1.5rem;
 }
 
-.hero-bio {
-  max-width: 62ch;
-}
-
 .buttons .button {
   margin-right: 0.25rem;
 }

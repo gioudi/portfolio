@@ -1,41 +1,31 @@
 <template>
   <section class="services-offer py-4">
-    <div class="container">
+    <div class="container is-narrow">
       <h2 id="services" class="title is-2 has-text-centered">
         {{ t("services.heading") }}
       </h2>
-      <div class="columns is-multiline is-mobile is-variable is-4">
-        <article
-          v-for="(key, index) in serviceKeys"
-          :key="key"
-          class="column is-full-mobile is-half-tablet is-one-quarter-desktop"
-          data-aos="fade-up"
-          :data-aos-delay="index * 100"
-        >
-          <div class="card service-card">
-            <div class="card-content">
-              <p class="title is-5">
-                {{ t(`services.items.${key}.title`) }}
-              </p>
-              <p class="subtitle is-6">
-                {{ t(`services.items.${key}.description`) }}
-              </p>
-              <p class="price tag is-medium has-text-weight-bold">
-                {{ t(`services.items.${key}.price`) }}
-              </p>
-              <ul class="features">
-                <li v-for="feature in featuresOf(key)" :key="feature">
-                  <span class="icon is-small mr-1"
-                    ><i class="fas fa-check"></i></span
-                  >{{ feature }}
-                </li>
-              </ul>
-              <a href="#contact" class="button is-small mt-3">
-                {{ t("services.cta") }}
-              </a>
-            </div>
+
+      <div class="offers-panel" data-aos="fade-up">
+        <div v-for="key in offerKeys" :key="key" class="offer-row">
+          <div class="offer-info">
+            <p class="offer-name has-text-weight-bold">
+              {{ t(`services.offers.${key}.name`) }}
+            </p>
+            <p class="offer-blurb">
+              {{ t(`services.offers.${key}.blurb`) }}
+            </p>
           </div>
-        </article>
+          <div class="offer-leader" aria-hidden="true"></div>
+          <div class="offer-price">
+            <span class="has-text-weight-bold">{{ prices[key] }}</span
+            ><span class="is-size-7">{{ t("services.hourly") }}</span>
+          </div>
+        </div>
+
+        <a href="#contact" class="button offers-cta mt-4">
+          {{ t("services.cta") }}
+          <span class="icon ml-1"><i class="fas fa-arrow-right"></i></span>
+        </a>
       </div>
     </div>
   </section>
@@ -44,41 +34,95 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 
-const { t, tm } = useI18n();
+const { t } = useI18n();
 
-const serviceKeys = ["frontend", "systems", "fullstack", "ai"];
+const offerKeys = ["software", "systems", "architecture", "ai"] as const;
 
-const featuresOf = (key: string) => {
-  const nodes = tm(`services.items.${key}.features`) as unknown[];
-  return nodes.map((node) => String(node));
+const prices: Record<string, string> = {
+  software: "$35",
+  systems: "$35",
+  architecture: "$35",
+  ai: "$45",
 };
 </script>
 
 <style scoped lang="scss">
-.service-card {
-  height: 100%;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+.is-narrow {
+  max-width: 860px;
+}
 
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+.offers-panel {
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(51, 51, 51, 0.12);
+  border-radius: 6px;
+  padding: 1.5rem 2rem;
+}
+
+.offer-row {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.9rem 0;
+
+  & + .offer-row {
+    border-top: 1px dashed rgba(51, 51, 51, 0.18);
   }
 }
 
-.service-card .card-content {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+.offer-info {
+  flex-shrink: 0;
+  width: 46%;
 }
 
-.features {
-  margin-top: auto;
+.offer-name {
+  margin-bottom: 0.15rem;
+}
 
-  li {
-    list-style-type: none;
-    margin-bottom: 0.25rem;
+.offer-blurb {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.offer-leader {
+  flex-grow: 1;
+  border-bottom: 1px dotted rgba(51, 51, 51, 0.3);
+  transform: translateY(-4px);
+}
+
+.offer-price {
+  white-space: nowrap;
+  font-size: 1.15rem;
+}
+
+.offers-cta {
+  display: inline-flex;
+  align-items: center;
+  background-color: #333;
+  color: #f2f2f2;
+  font-weight: 700;
+
+  &:hover {
+    background-color: #000;
+    color: #fff;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .offers-panel {
+    padding: 1rem 1.25rem;
+  }
+
+  .offer-row {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .offer-info {
+    width: 100%;
+  }
+
+  .offer-leader {
+    display: none;
   }
 }
 </style>

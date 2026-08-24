@@ -157,52 +157,29 @@ export default {
     ai: "AI-Assisted Engineering",
   },
   services: {
-    heading: "Freelance Services",
+    heading: "Freelance Offers",
     cta: "Let's talk",
-    items: {
-      frontend: {
-        title: "Frontend Engineering",
-        description:
-          "Scalable, responsive and accessible SPAs with React, Vue or Angular and TypeScript.",
-        price: "$30/h",
-        features: [
-          "Performance & Core Web Vitals",
-          "Accessibility (a11y)",
-          "API integration & state management",
-        ],
+    hourly: "/h",
+    offers: {
+      software: {
+        name: "Software Engineering & Consulting",
+        blurb:
+          "End-to-end delivery: robust frontend (React/Vue/Angular + TypeScript) backed by solid APIs.",
       },
       systems: {
-        title: "Design Systems",
-        description:
-          "Component libraries and Design Systems that scale across products and teams.",
-        price: "$35/h",
-        features: [
-          "Storybook documentation",
-          "Design tokens & theming",
-          "Module Federation / micro-frontends",
-        ],
+        name: "Design Systems",
+        blurb:
+          "Tokens, component libraries and Storybook docs your whole team can build on.",
       },
-      fullstack: {
-        title: "Full-Stack Delivery",
-        description:
-          "End-to-end features with Node.js or Laravel backed by solid data modeling.",
-        price: "$30/h",
-        features: [
-          "REST APIs with Node/Laravel",
-          "PostgreSQL / MySQL",
-          "CI pipelines & testing culture",
-        ],
+      architecture: {
+        name: "Frontend Architecture",
+        blurb:
+          "Scalable app architecture and micro-frontends with performance and accessibility from day one.",
       },
       ai: {
-        title: "AI-Assisted Engineering",
-        description:
-          "Practical AI adoption for teams that want speed without losing quality.",
-        price: "$40/h",
-        features: [
-          "Claude Code / OpenCode agent workflows",
-          "Copilot-driven pair programming standards",
-          "Observability & incidents (Datadog, ServiceNow)",
-        ],
+        name: "AI-Assisted Engineering",
+        blurb:
+          "Claude Code / Copilot workflows embedded in your SDLC — ship faster without lowering quality.",
       },
     },
   },

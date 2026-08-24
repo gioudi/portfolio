@@ -93,6 +93,18 @@ const eventIcon = (key: string) => eventIcons[key] ?? "fas fa-circle";
   mask-image: linear-gradient(to bottom, black 82%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 82%, transparent 100%);
   padding-bottom: 4rem;
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -0.0625rem;
+    height: 100%;
+    border: 0.0625rem dashed $info;
+    z-index: 1;
+  }
 
   &::-webkit-scrollbar {
     width: 6px;
@@ -122,17 +134,6 @@ const eventIcon = (key: string) => eventIcons[key] ?? "fas fa-circle";
   margin: 0 auto;
   position: relative;
   overflow: hidden;
-}
-
-.timeline:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  margin-left: -0.0625rem;
-  height: 100%;
-  border: 0.0625rem dashed $info;
-  z-index: 1;
 }
 
 .timeline-block {
@@ -191,7 +192,7 @@ const eventIcon = (key: string) => eventIcons[key] ?? "fas fa-circle";
     width: 100%;
     padding-left: 0.75rem;
   }
-  .timeline:before {
+  .timeline-scroll:before {
     left: 0.5rem;
     margin-left: 0;
   }

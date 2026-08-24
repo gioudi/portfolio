@@ -7,7 +7,7 @@
       class="columns is-variable is-1-mobile is-0-tablet is-3-desktop is-multiline mb-5"
     >
       <article
-        class="column is-half-tablet is-one-quarter-desktop"
+        class="column is-half-tablet is-one-quarter-desktop is-one-fifth-widescreen"
         v-for="project in projects"
         :key="project.id"
       >
@@ -44,7 +44,7 @@
       class="columns is-variable is-1-mobile is-0-tablet is-3-desktop is-multiline"
     >
       <article
-        class="column is-half-tablet is-one-quarter-desktop"
+        class="column is-half-tablet is-one-quarter-desktop is-one-fifth-widescreen"
         v-for="project in otherProjects"
         :key="project.title"
       >

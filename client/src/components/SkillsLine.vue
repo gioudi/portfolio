@@ -85,10 +85,24 @@ const skillGroups = [
 <style lang="scss">
 .container-icon {
   filter: grayscale(100%);
-  transition: all 0.3s ease-in-out;
+  opacity: 0.72;
+  transition: filter 0.3s ease-in-out, opacity 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
+  cursor: default;
+
+  i {
+    font-size: 1.25rem;
+    transition: inherit;
+  }
 
   &:hover {
-    filter: grayscale(0) !important;
+    filter: grayscale(0);
+    opacity: 1;
+    transform: scale(1.2);
+
+    i {
+      text-shadow: 0 0 12px rgba(51, 51, 51, 0.35);
+    }
   }
 }
 </style>

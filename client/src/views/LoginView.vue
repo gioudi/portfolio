@@ -124,7 +124,7 @@ export default defineComponent({
       }
     });
 
-    return { username, password, login, authError, submitting };
+    return { t, username, password, login, authError, submitting };
   },
 });
 </script>

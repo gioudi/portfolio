@@ -40,6 +40,10 @@ body {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+
+  @media screen and (min-width: 1408px) {
+    max-width: 1400px;
+  }
 }
 
 header {
@@ -94,7 +98,7 @@ a {
 
 .container-image {
   border-radius: 0.250rem;
-  max-width: 18.75rem;
+  max-width: none;
   overflow: hidden;
   height: auto;
   @media screen and (min-width: 1140px) {

@@ -157,52 +157,29 @@ export default {
     ai: "Ingeniería Asistida por IA",
   },
   services: {
-    heading: "Servicios Freelance",
+    heading: "Ofertas Freelance",
     cta: "Hablemos",
-    items: {
-      frontend: {
-        title: "Ingeniería Frontend",
-        description:
-          "SPAs escalables, responsivas y accesibles con React, Vue o Angular y TypeScript.",
-        price: "$30/h",
-        features: [
-          "Rendimiento & Core Web Vitals",
-          "Accesibilidad (a11y)",
-          "Integración de APIs & manejo de estado",
-        ],
+    hourly: "/h",
+    offers: {
+      software: {
+        name: "Ingeniería de Software & Consultoría",
+        blurb:
+          "Entrega de punta a punta: frontend sólido (React/Vue/Angular + TypeScript) respaldado por APIs confiables.",
       },
       systems: {
-        title: "Design Systems",
-        description:
-          "Librerías de componentes y Design Systems que escalan entre productos y equipos.",
-        price: "$35/h",
-        features: [
-          "Documentación con Storybook",
-          "Design tokens & theming",
-          "Module Federation / micro-frontends",
-        ],
+        name: "Design Systems",
+        blurb:
+          "Tokens, librerías de componentes y documentación Storybook sobre los que todo tu equipo puede construir.",
       },
-      fullstack: {
-        title: "Entrega Full-Stack",
-        description:
-          "Funcionalidades de punta a punta con Node.js o Laravel respaldadas por modelado de datos sólido.",
-        price: "$30/h",
-        features: [
-          "APIs REST con Node/Laravel",
-          "PostgreSQL / MySQL",
-          "Pipelines de CI & cultura de testing",
-        ],
+      architecture: {
+        name: "Arquitectura Frontend",
+        blurb:
+          "Arquitectura escalable y micro-frontends con rendimiento y accesibilidad desde el día uno.",
       },
       ai: {
-        title: "Ingeniería Asistida por IA",
-        description:
-          "Adopción práctica de IA para equipos que quieren velocidad sin sacrificar calidad.",
-        price: "$40/h",
-        features: [
-          "Flujos con agentes Claude Code / OpenCode",
-          "Estándares de pair programming con Copilot",
-          "Observabilidad e incidentes (Datadog, ServiceNow)",
-        ],
+        name: "Ingeniería Asistida por IA",
+        blurb:
+          "Flujos Claude Code / Copilot integrados en tu SDLC — entrega más rápido sin bajar la calidad.",
       },
     },
   },
