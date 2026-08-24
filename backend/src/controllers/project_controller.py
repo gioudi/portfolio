@@ -71,7 +71,7 @@ def create_project(user_id):
 
     data['user_id'] = user_id
     project = project_service.create_project(data)
-    return jsonify({"message": "Project created successfully", "project": project}), 201
+    return jsonify({"message": "Project created successfully", "project": project.to_dict()}), 201
 
 def get_projects():
     projects = project_service.get_all_projects()
