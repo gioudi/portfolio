@@ -51,7 +51,7 @@ import SkillsLine from "@/components/SkillsLine.vue";
 import ContactStep from "@/components/ContactStep.vue";
 import FooterLine from "@/components/FooterLine.vue";
 import ServicesOffer from "@/components/ServicesOffer.vue";
-import pdfUrl from "@/assets/CV-2024.pdf";
+import pdfUrl from "@/assets/SergioPenagosCV2026.pdf";
 
 const { t } = useI18n();
 
