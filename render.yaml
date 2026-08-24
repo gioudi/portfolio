@@ -13,6 +13,18 @@ services:
         value: "true"
       - key: ALLOWED_ORIGINS
         value: https://gioudi.github.io
+      # Managed providers (Neon) require TLS; never allow silent SQLite fallback in prod.
+      - key: POSTGRES_SSL
+        value: "true"
+      - key: ALLOW_DB_FALLBACK
+        value: "false"
+      # Seed data for first boot (non-secret).
+      - key: DEFAULT_PROJECT_TYPE_1
+        value: Web Application
+      - key: DEFAULT_PROJECT_TYPE_2
+        value: Mobile App
+      - key: DEFAULT_PROJECT_TYPE_3
+        value: API
       - key: POSTGRES_HOST
         sync: false
       - key: POSTGRES_PORT
