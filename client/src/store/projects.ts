@@ -13,6 +13,7 @@ interface MediaItem {
 
 export interface LocalProject {
   id: string;
+  key?: string;
   title: string;
   description: string;
   image: string;
@@ -26,6 +27,7 @@ export interface LocalProject {
 }
 
 export interface OtherProject {
+  key?: string;
   title: string;
   image: string;
   kind: string;
@@ -73,6 +75,7 @@ export const useProjectStore = defineStore({
     projects: [
       {
         id: "1",
+        key: "intercambank",
         title: "INTERCAM",
         description:
           "As a Mid Frontend Developer, I collaborated with an international developer team to develop a software solution for INTERCAM bank. Our project focused on creating a public site with multi-language support. ",
@@ -96,6 +99,7 @@ export const useProjectStore = defineStore({
       },
       {
         id: "2",
+        key: "mifel",
         title: "PRIVATE SITE MIFEL",
         description:
           "As a Mid Frontend Developer, I collaborated with an international developer team to develop a software solution for MIFEL bank. Our project focused on creating a private site with multi-language support. This site was designed to manage various aspects of clients' accounts, including cards, checkbooks, clarifications, movements, checks, debts, credits, and connectivity to DIMO.",
@@ -124,6 +128,7 @@ export const useProjectStore = defineStore({
       },
       {
         id: "3",
+        key: "dando",
         title: "DANDO",
         description:
           "I have collaborated as a Mid Frontend Developer in an international project that aimed to create a software solution for CFG. This experience involved working closely with multicultural teams from various countries, providing valuable insights into effective collaboration on similar projects.",
@@ -151,6 +156,7 @@ export const useProjectStore = defineStore({
       },
       {
         id: "4",
+        key: "deone",
         title: "DEONE",
         description:
           "As a Junior Frontend Developer, I collaborated with a developer team to create a software solution for PriceSmart Colombia. Our project, called DEONE, encompassed developing both a website and a mobile app. The platform aimed to provide users with an Express Courier service, allowing them to send packages and request various other services.",
@@ -182,6 +188,7 @@ export const useProjectStore = defineStore({
       },
       {
         id: "5",
+        key: "kairos",
         title: "KAIROS",
         description:
           "When I was working on the Kairos web application, I played a crucial role in developing new features, fixing bugs, and maintaining the codebase. My responsibilities included front-end development of web apps using JavaScript, TypeScript, CSS, Sass, and HTML. One of the projects I worked on was Kairos, a web app in .NET for managing PRIMAX projects in the hydrocarbon industry.",
@@ -212,6 +219,7 @@ export const useProjectStore = defineStore({
     ] as LocalProject[],
     otherProjects: [
       {
+        key: "bbc",
         title: "WEB BBC",
         image: `${CLOUDINARY_BASE}/BBC.webp`,
         kind: "Work",
@@ -222,6 +230,7 @@ export const useProjectStore = defineStore({
         site: "https://www.bbccerveceria.com/",
       },
       {
+        key: "stella",
         title: "WEB STELLA ARTOIS",
         image: `${CLOUDINARY_BASE}/STELLA.webp`,
         techStack: "Html5, Sass, TypeScript, Github, Php",
@@ -233,6 +242,7 @@ export const useProjectStore = defineStore({
           "Stella artois colombian website where every client could see and get information about company products, offers, services and office.",
       },
       {
+        key: "google",
         title: "FAKE GOOGLE",
         image: `${CLOUDINARY_BASE}/GOOGLE.webp`,
         techStack: "Html5, Sass, JavaScript, Github, Vue",
@@ -244,6 +254,7 @@ export const useProjectStore = defineStore({
           "Template about Google's landing page, where you can see a dropdown tools and a landing page mobile version,  built using vue.",
       },
       {
+        key: "weather",
         title: "WEATHER FORECAST",
         image: `${CLOUDINARY_BASE}/WEATHER.webp`,
         techStack: "React, Css3, JavaScript, TypeScript, Github",
@@ -272,11 +283,40 @@ export const useProjectStore = defineStore({
       }
     },
     async createProject(projectData: CreateProjectPayload) {
+      const formData = new FormData();
+      formData.append("name", projectData.name);
+      formData.append("description", projectData.description);
+      formData.append(
+        "project_type_id",
+        String(projectData.project_type_id ?? "")
+      );
+      formData.append("link", projectData.link);
+      formData.append("responsibilities", projectData.responsibilities);
+      formData.append("user_id", String(projectData.user_id ?? 1));
+      (projectData.technologies ?? []).forEach((tech) =>
+        formData.append("technologies", tech)
+      );
+      (projectData.tags ?? []).forEach((tag) => formData.append("tags", tag));
+      (projectData.images ?? []).forEach((image) => {
+        if (image instanceof File) {
+          formData.append("images", image, image.name);
+        }
+      });
+      if (projectData.video instanceof File) {
+        formData.append("video", projectData.video, projectData.video.name);
+      }
+
       try {
-        const response = await axios.post("/api/projects", projectData);
+        const response = await axios.post("/api/projects", formData);
         this.projects.push(response.data.project);
       } catch (error) {
-        console.error("Error creating project:", error);
+        const axiosError = error as {
+          response?: { data?: { message?: string } };
+        };
+        const backendMessage = axiosError.response?.data?.message ?? undefined;
+        throw new Error(
+          backendMessage || "Failed to create project. Please try again."
+        );
       }
     },
     async fetchTypeProjects() {

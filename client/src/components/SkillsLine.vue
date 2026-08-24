@@ -1,64 +1,26 @@
 <template>
-  <section class="skills py-5" data-aos="fade-up">
-    <h2 class="title is-2 has-text-centered">Skills</h2>
-    <div class="columns is-multiline">
+  <section class="skills py-4" data-aos="fade-up">
+    <h2 id="skills" class="title is-2 has-text-centered">
+      {{ t("skills.heading") }}
+    </h2>
+    <div class="columns is-multiline is-variable is-2">
       <div
-        class="skills-section column"
+        v-for="group in skillGroups"
+        :key="group.titleKey"
+        class="skills-section column is-half-mobile is-3"
         data-aos="fade-up"
-        data-aos-delay="100"
       >
-        <h3 class="subtitle is-3">Backend</h3>
+        <h3 class="subtitle is-4">{{ t(group.titleKey) }}</h3>
 
         <div
-          v-for="skill in backendSkills"
+          v-for="skill in group.items"
           :key="skill.name"
-          class="is-flex is-justify-content-space-between"
+          class="skill-row is-flex is-align-items-center"
           data-aos="fade-up"
           :data-aos-delay="skill.delay"
         >
           <div class="container-icon is-flex is-align-items-center">
-            <i :class="` mr-3 colored ${skill.icon}`"></i>{{ skill.name }}
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="skills-section column"
-        data-aos="fade-up"
-        data-aos-delay="200"
-      >
-        <h3 class="subtitle is-3">Frontend</h3>
-
-        <div
-          v-for="skill in frontendSkills"
-          :key="skill.name"
-          class="is-flex is-justify-content-space-between"
-          data-aos="fade-up"
-          :data-aos-delay="skill.delay"
-        >
-          <div class="container-icon is-flex is-align-items-center">
-            <i :class="`mr-3 colored ${skill.icon}`"></i>
-            {{ skill.name }}
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="skills-section column"
-        data-aos="fade-up"
-        data-aos-delay="300"
-      >
-        <h3 class="subtitle is-3">Tools</h3>
-        <div
-          v-for="tool in tools"
-          :key="tool.name"
-          class="is-flex is-justify-content-space-between"
-          data-aos="fade-up"
-          :data-aos-delay="tool.delay"
-        >
-          <div class="container-icon is-flex is-align-items-center">
-            <i :class="`mr-3 colored ${tool.icon}`"></i>
-            {{ tool.name }}
+            <i :class="`mr-3 colored ${skill.icon}`"></i>{{ skill.name }}
           </div>
         </div>
       </div>
@@ -66,42 +28,92 @@
   </section>
 </template>
 
-<script setup>
-const backendSkills = [
-  { name: "Laravel", icon: "devicon-laravel-plain", delay: 100 },
-  { name: "MySQL", icon: "devicon-mysql-plain", delay: 200 },
-];
+<script setup lang="ts">
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
 
 const frontendSkills = [
   { name: "Vue.js", icon: "devicon-vuejs-plain", delay: 100 },
   { name: "React", icon: "devicon-react-original", delay: 200 },
-  { name: "React Native", icon: "devicon-react-original", delay: 300 },
-  { name: "JavaScript", icon: "devicon-javascript-plain", delay: 400 },
-  { name: "TypeScript", icon: "devicon-typescript-plain", delay: 500 },
-  { name: "Bulma", icon: "devicon-bulma-plain", delay: 600 },
-  { name: "Bootstrap", icon: "devicon-bootstrap-plain", delay: 700 },
-  { name: "Sass", icon: "devicon-sass-original", delay: 800 },
+  { name: "Angular", icon: "devicon-angular-plain", delay: 300 },
+  { name: "React Native", icon: "devicon-react-original", delay: 400 },
+  { name: "JavaScript", icon: "devicon-javascript-plain", delay: 500 },
+  { name: "TypeScript", icon: "devicon-typescript-plain", delay: 600 },
+  { name: "Sass", icon: "devicon-sass-original", delay: 700 },
+  { name: "Bulma", icon: "devicon-bulma-plain", delay: 800 },
+  { name: "Bootstrap", icon: "devicon-bootstrap-plain", delay: 900 },
+];
+
+const backendSkills = [
+  { name: "Node.js", icon: "devicon-nodejs-plain", delay: 100 },
+  { name: "Python", icon: "devicon-python-plain", delay: 200 },
+  { name: "Laravel", icon: "devicon-laravel-plain", delay: 300 },
+  { name: "PHP", icon: "devicon-php-plain", delay: 400 },
+  { name: "PostgreSQL", icon: "devicon-postgresql-plain", delay: 500 },
+  { name: "MySQL", icon: "devicon-mysql-plain", delay: 600 },
 ];
 
 const tools = [
-  { name: "Git", icon: "devicon-git-plain", delay: 100 },
-  { name: "GitHub", icon: "devicon-github-original", delay: 200 },
-  { name: "Eslint", icon: "devicon-eslint-original", delay: 300 },
-  { name: "Jira", icon: "devicon-jira-plain", delay: 400 },
-  { name: "Figma", icon: "devicon-figma-plain", delay: 500 },
-  { name: "Trello", icon: "devicon-trello-plain", delay: 600 },
-  { name: "Slack", icon: "devicon-slack-plain", delay: 700 },
-  { name: "Bitbucket", icon: "devicon-bitbucket-original", delay: 800 },
+  { name: "Git / GitHub", icon: "devicon-github-original", delay: 100 },
+  { name: "Storybook", icon: "devicon-storybook-plain", delay: 200 },
+  { name: "Jest", icon: "devicon-jest-plain", delay: 300 },
+  { name: "ESLint", icon: "devicon-eslint-original", delay: 400 },
+  { name: "Datadog", icon: "devicon-datadog-plain", delay: 500 },
+  { name: "ServiceNow", icon: "fas fa-headset", delay: 600 },
+  { name: "Jira", icon: "devicon-jira-plain", delay: 700 },
+  { name: "Figma", icon: "devicon-figma-plain", delay: 800 },
+  { name: "Docker", icon: "devicon-docker-plain", delay: 900 },
+];
+
+const aiSkills = [
+  { name: "Claude Code", icon: "fas fa-robot", delay: 100 },
+  { name: "OpenCode", icon: "fas fa-terminal", delay: 200 },
+  { name: "GitHub Copilot", icon: "fas fa-magic", delay: 300 },
+  { name: "ChatGPT", icon: "fas fa-comments", delay: 400 },
+  { name: "Gemini", icon: "fas fa-gem", delay: 500 },
+];
+
+const skillGroups = [
+  { titleKey: "skills.frontend", items: frontendSkills },
+  { titleKey: "skills.backend", items: backendSkills },
+  { titleKey: "skills.tools", items: tools },
+  { titleKey: "skills.ai", items: aiSkills },
 ];
 </script>
 
 <style lang="scss">
+.skill-row {
+  margin-bottom: 0.6rem;
+}
+
+.skills-section {
+  min-width: 0;
+}
+
 .container-icon {
   filter: grayscale(100%);
-  transition: all 0.3s ease-in-out;
+  opacity: 0.72;
+  transition: filter 0.3s ease-in-out, opacity 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
+  cursor: default;
+  position: relative;
+  z-index: 1;
+
+  i {
+    font-size: 1.25rem;
+    transition: inherit;
+  }
 
   &:hover {
-    filter: grayscale(0) !important;
+    filter: grayscale(0);
+    opacity: 1;
+    transform: scale(1.15);
+    z-index: 5;
+
+    i {
+      text-shadow: 0 0 12px rgba(51, 51, 51, 0.35);
+    }
   }
 }
 </style>

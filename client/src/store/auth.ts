@@ -8,28 +8,24 @@ export const useAuthStore = defineStore("auth", {
   }),
   actions: {
     async login(username: string, password: string) {
+      let data: { message?: string; token?: string };
       try {
         const response = await axios.post("api/login", { username, password });
-
-        if (response.data[1] === 401) {
-          this.loggedIn = false;
-          throw new Error("Invalid credentials");
-        }
-        console.log(response.data[0].message);
-        if (response.data[0].token) {
-          this.token = response.data[0].token;
-          this.loggedIn = true;
-          if (this.token) {
-            localStorage.setItem("token", this.token);
-          }
-          axios.defaults.headers.common[
-            "Authorization"
-          ] = `Bearer ${this.token}`;
-        }
-      } catch (error) {
+        data = response.data;
+      } catch {
         this.loggedIn = false;
         throw new Error("Invalid credentials");
       }
+
+      if (!data.token) {
+        this.loggedIn = false;
+        throw new Error(data.message || "Invalid credentials");
+      }
+
+      this.token = data.token;
+      this.loggedIn = true;
+      localStorage.setItem("token", this.token);
+      axios.defaults.headers.common["Authorization"] = `Bearer ${this.token}`;
     },
     logout() {
       this.token = null;

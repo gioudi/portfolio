@@ -29,7 +29,7 @@ describe("auth store", () => {
 
   it("login stores token and sets Authorization header", async () => {
     axiosPost.mockResolvedValue({
-      data: [{ token: "jwt-token", message: "ok" }, 200],
+      data: { message: "Login successful!", token: "jwt-token" },
     });
 
     const store = useAuthStore();
@@ -40,10 +40,20 @@ describe("auth store", () => {
     expect(localStorage.getItem("token")).toBe("jwt-token");
   });
 
-  it("login rejects on invalid credentials (401)", async () => {
+  it("login rejects when response carries no token", async () => {
     axiosPost.mockResolvedValue({
-      data: [{ message: "unauthorized" }, 401],
+      data: { message: "Invalid credentials!" },
     });
+
+    const store = useAuthStore();
+    await expect(store.login("user", "bad")).rejects.toThrow(
+      "Invalid credentials"
+    );
+    expect(store.loggedIn).toBe(false);
+  });
+
+  it("login rejects on network or HTTP error", async () => {
+    axiosPost.mockRejectedValue(new Error("Request failed with status 401"));
 
     const store = useAuthStore();
     await expect(store.login("user", "bad")).rejects.toThrow(
@@ -54,7 +64,7 @@ describe("auth store", () => {
 
   it("logout clears token, state and storage", async () => {
     axiosPost.mockResolvedValue({
-      data: [{ token: "jwt-token", message: "ok" }, 200],
+      data: { message: "Login successful!", token: "jwt-token" },
     });
 
     const store = useAuthStore();

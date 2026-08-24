@@ -1,13 +1,19 @@
 <template>
-  <button @click="toggleLanguage" class="language-toggle-button">
-    <span class="icon">
-      <i v-if="currentLanguage === 'en'" class="fas fa-flag-usa"></i>
-      <i v-else class="fas fa-flag"></i>
+  <button
+    @click="toggleLanguage"
+    class="language-toggle-button"
+    :title="
+      currentLanguage === 'en' ? 'Switch to Español' : 'Cambiar a English'
+    "
+  >
+    <span class="icon is-small">
+      <i class="fas fa-language"></i>
     </span>
+    <span>{{ currentLanguage === "en" ? "ES" : "EN" }}</span>
   </button>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { useLanguageStore } from "../store/language";
@@ -15,32 +21,36 @@ import { useLanguageStore } from "../store/language";
 const i18n = useI18n();
 const languageStore = useLanguageStore();
 
-const currentLanguage = computed(() => languageStore.currentLanguage);
+const currentLanguage = computed(() => languageStore.currentLanguage as string);
 
 const toggleLanguage = () => {
   const newLanguage = currentLanguage.value === "en" ? "es" : "en";
   languageStore.setCurrentLanguage(newLanguage);
   i18n.locale.value = newLanguage;
+  localStorage.setItem("locale", newLanguage);
+  document.documentElement.setAttribute("lang", newLanguage);
 };
 </script>
 
 <style scoped lang="scss">
 .language-toggle-button {
-  position: fixed;
-  top: 20px;
-  right: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
   background: transparent;
   border: none;
+  border-bottom: 1px solid transparent;
   cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #000;
+  padding: 0.25rem 0.15rem;
+  transition: border-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
 
-  .icon {
-    font-size: 1.5rem;
-    color: #333; // Adjust the color based on your design
-    transition: color 0.3s ease-in-out;
-  }
-
-  &:hover .icon {
-    color: #ff9800; // Change the color on hover
+  &:hover {
+    border-bottom-color: rgba(51, 51, 51, 0.6);
+    opacity: 0.8;
   }
 }
 </style>
