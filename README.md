@@ -13,33 +13,36 @@
 ### Frontend
 | Technology | Version | Purpose |
 |------------|---------|---------|
-| Vue.js | 3.2.13 | UI Framework |
-| TypeScript | 4.5.5 | Type Safety |
-| Pinia | 2.1.7 | State Management |
-| Vue Router | 4.0.3 | Client-side Routing |
+| Vue.js | 3.5.x | UI Framework |
+| TypeScript | 5.5.x | Type Safety |
+| Pinia | 2.3.x | State Management |
+| Vue Router | 4.6.x | Client-side Routing |
 | Bulma | 0.9.4 | CSS Framework |
-| Sass | 1.32.7 | CSS Preprocessor |
-| VeeValidate | 4.14.4 | Form Validation |
-| Yup | 1.4.0 | Schema Validation |
-| Axios | 1.7.7 | HTTP Client |
-| Vue I18n | 9.14.3 | Internationalization |
+| Sass | 1.103.x | CSS Preprocessor |
+| VeeValidate | 4.15.x | Form Validation |
+| Yup | 1.7.x | Schema Validation |
+| Axios | 1.19.x | HTTP Client |
+| Vue I18n | 9.14.x | Internationalization |
 | AOS | 2.3.4 | Scroll Animations |
-| FilePond | 4.31.4 | File Uploads |
+| FilePond | 4.32.x | File Uploads |
 | Jest | 27 | Unit Testing |
 | Cypress | 9.7.0 | E2E Testing |
 
 ### Backend
 | Technology | Version | Purpose |
 |------------|---------|---------|
-| Python | 3.11+ | Runtime |
-| Flask | 3.0.0 | Web Framework |
-| SQLAlchemy | 2.0.23 | ORM |
-| PostgreSQL | 14+ | Database |
-| pg8000 | 1.30.3 | Database Driver |
-| PyJWT | 2.8.0 | Authentication |
-| bcrypt | 4.1.2 | Password Hashing |
-| Cloudinary | 1.36.0 | Media Storage |
-| Flask-CORS | 4.0.0 | Cross-origin Requests |
+| Python | 3.12 (Docker image) | Runtime |
+| Flask | 3.1.x | Web Framework |
+| Flask-Limiter | 4.1.x | Login Rate Limiting |
+| Gunicorn | 23.0.0 | WSGI Server |
+| SQLAlchemy | 2.0.x | ORM |
+| PostgreSQL | 16 (Docker image) | Database |
+| pg8000 | 1.31.x | Database Driver |
+| PyJWT | 2.13.x | Authentication |
+| bcrypt | 4.3.0 | Password Hashing |
+| Cloudinary | 1.46.x | Media Storage |
+| Flask-CORS | 6.0.x | Cross-origin Requests |
+| python-dotenv | 1.2.x | Environment Config |
 
 ### DevOps & Tools
 | Tool | Purpose |
@@ -164,6 +167,16 @@ DEFAULT_PROJECT_TYPE_3=API
 ---
 
 ## Running the Project
+
+### Option A: Docker (recommended)
+
+```bash
+docker compose up -d --build
+```
+
+Starts `api` (Flask + Gunicorn on :5000), `db` (PostgreSQL 16 with persistent volume), and optionally `pgadmin` (`docker compose --profile debug up -d`, :5050). Seed credentials come from a git-ignored `.env`; weak or missing values skip seeding with a warning.
+
+### Option B: Manual
 
 ### Start Backend
 
@@ -297,9 +310,9 @@ npm run build
 
 ---
 
-## Known Issues
+## Project Status
 
-See [PORTFOLIO_REVIEW.txt](./PORTFOLIO_REVIEW.txt) for detailed analysis.
+Improvement roadmap phases (critical fixes, security hardening, SEO, performance, testing, containerization Stage A) are completed — see [docs/specs/](./docs/specs/) for per-phase specifications. Remaining work: containerization Stage B (host deployment) and polish items. For the original baseline analysis, see [PORTFOLIO_REVIEW.txt](./PORTFOLIO_REVIEW.txt) (historical).
 
 ---
 

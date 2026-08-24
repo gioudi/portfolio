@@ -1,6 +1,10 @@
 ================================================================================
                     PORTFOLIO PROJECT - COMPREHENSIVE REVIEW
 ================================================================================
+NOTE (2026-08-24): This is the ORIGINAL baseline review. Roadmap phases below
+marked Pending have since been COMPLETED — current status lives in docs/specs/
+(SPEC-P01..P06, P02b, SECRET-001). Containerization Stage B is the only
+remaining phase.
 Date: August 18, 2026
 Reviewer: AI Assistant (opencode)
 Project: Sergio Penagos Portfolio
