@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /login
+Disallow: /create-project
+
+Sitemap: https://gioudi.github.io/portfolio/sitemap.xml
