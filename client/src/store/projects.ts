@@ -306,8 +306,18 @@ export const useProjectStore = defineStore({
         formData.append("video", projectData.video, projectData.video.name);
       }
 
-      const response = await axios.post("/api/projects", formData);
-      this.projects.push(response.data.project);
+      try {
+        const response = await axios.post("/api/projects", formData);
+        this.projects.push(response.data.project);
+      } catch (error) {
+        const axiosError = error as {
+          response?: { data?: { message?: string } };
+        };
+        const backendMessage = axiosError.response?.data?.message ?? undefined;
+        throw new Error(
+          backendMessage || "Failed to create project. Please try again."
+        );
+      }
     },
     async fetchTypeProjects() {
       this.loading = true;

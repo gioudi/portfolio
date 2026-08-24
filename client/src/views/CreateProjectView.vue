@@ -10,6 +10,25 @@
             </h2>
 
             <form class="mt-4" @submit.prevent="createProject">
+              <div
+                v-if="attemptedSubmit && (errorList.length || backendError)"
+                class="form-error-card"
+                role="alert"
+              >
+                <p class="form-error-card__title">
+                  <span class="icon is-small mr-1">
+                    <i class="fas fa-exclamation-triangle"></i>
+                  </span>
+                  {{ t("create.errors.summary") }}
+                </p>
+                <ul v-if="errorList.length">
+                  <li v-for="message in errorList" :key="message">
+                    {{ message }}
+                  </li>
+                </ul>
+                <p v-if="backendError" class="mt-1">{{ backendError }}</p>
+              </div>
+
               <div class="field">
                 <label class="label" for="name">{{ t("create.name") }}</label>
                 <div class="control">
@@ -146,13 +165,6 @@
                 />
               </div>
 
-              <p
-                v-if="submitError"
-                class="notification is-danger is-light mt-3"
-              >
-                {{ t("create.failed") }}
-              </p>
-
               <button
                 class="button is-primary mt-3"
                 type="submit"
@@ -170,7 +182,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, onMounted } from "vue";
+import { ref, watch, onMounted, computed } from "vue";
 import { useRouter } from "vue-router";
 import { useForm, Field, ErrorMessage, useField } from "vee-validate";
 import * as yup from "yup";
@@ -218,7 +230,7 @@ const tagsOptions = [
   "personal",
 ];
 
-const { handleSubmit, resetForm } = useForm({
+const { handleSubmit, resetForm, errors } = useForm({
   validationSchema: yup.object({
     name: yup.string().required(() => t("create.errors.nameRequired")),
     description: yup
@@ -290,6 +302,14 @@ watch(videoFile, (file) => {
 
 const submitting = ref(false);
 const submitError = ref(false);
+const attemptedSubmit = ref(false);
+const backendError = ref("");
+
+const errorList = computed(() =>
+  Object.values(errors.value).filter(
+    (message): message is string => typeof message === "string"
+  )
+);
 
 const projectStore = useProjectStore();
 const { fetchTypeProjects } = projectStore;
@@ -310,31 +330,40 @@ const getUserIdFromToken = (): number => {
   }
 };
 
-const createProject = handleSubmit(async (values) => {
-  submitting.value = true;
-  submitError.value = false;
-  try {
-    await projectStore.createProject({
-      name: values.name,
-      description: values.description,
-      project_type_id: Number(values.project_type_id),
-      link: values.link,
-      technologies: (values.technologies as string[]) ?? [],
-      responsibilities: values.responsibilities,
-      tags: (values.tags as string[]) ?? [],
-      images: (values.images as File[]) ?? [],
-      video: (values.video as File | null) ?? null,
-      user_id: getUserIdFromToken(),
-    });
-    resetForm();
-    router.push("/");
-  } catch (error) {
-    console.error("Error creating project:", error);
-    submitError.value = true;
-  } finally {
-    submitting.value = false;
+const createProject = handleSubmit(
+  async (values) => {
+    attemptedSubmit.value = true;
+    backendError.value = "";
+    submitting.value = true;
+    submitError.value = false;
+    try {
+      await projectStore.createProject({
+        name: values.name,
+        description: values.description,
+        project_type_id: Number(values.project_type_id),
+        link: values.link,
+        technologies: (values.technologies as string[]) ?? [],
+        responsibilities: values.responsibilities,
+        tags: (values.tags as string[]) ?? [],
+        images: (values.images as File[]) ?? [],
+        video: (values.video as File | null) ?? null,
+        user_id: getUserIdFromToken(),
+      });
+      resetForm();
+      router.push("/");
+    } catch (error) {
+      console.error("Error creating project:", error);
+      submitError.value = true;
+      backendError.value =
+        error instanceof Error ? error.message : t("create.failed");
+    } finally {
+      submitting.value = false;
+    }
+  },
+  () => {
+    attemptedSubmit.value = true;
   }
-});
+);
 </script>
 
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

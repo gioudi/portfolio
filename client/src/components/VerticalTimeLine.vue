@@ -30,7 +30,11 @@
               <small>{{ t(`timeline.events.${key}.date`) }}</small>
             </p>
             <span>{{ t(`timeline.events.${key}.subtitle`) }}</span>
-            <p>{{ t(`timeline.events.${key}.description`) }}</p>
+            <ul class="timeline-points">
+              <li v-for="(point, i) in pointsFor(key)" :key="i">
+                {{ point }}
+              </li>
+            </ul>
           </div>
         </article>
       </div>
@@ -42,11 +46,12 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 
-const { t } = useI18n();
+const { t, tm } = useI18n();
 
 const eventIcons: Record<string, string> = {
   degree2026: "fas fa-graduation-cap",
-  ba: "fas fa-plane",
+  globant: "fas fa-building",
+  britishCouncil: "fas fa-university",
   helitours: "fas fa-helicopter",
   mha: "fas fa-heartbeat",
   medellin: "fas fa-city",
@@ -61,7 +66,8 @@ const eventIcons: Record<string, string> = {
 
 const eventKeys = [
   "degree2026",
-  "ba",
+  "globant",
+  "britishCouncil",
   "helitours",
   "mha",
   "medellin",
@@ -73,6 +79,11 @@ const eventKeys = [
   "senaTech",
   "conex",
 ];
+
+const pointsFor = (key: string): string[] => {
+  const nodes = tm(`timeline.events.${key}.points`) as unknown[];
+  return nodes.map((node) => String(node));
+};
 
 const eventIcon = (key: string) => eventIcons[key] ?? "fas fa-circle";
 </script>
@@ -186,6 +197,22 @@ const eventIcon = (key: string) => eventIcons[key] ?? "fas fa-circle";
   word-spacing: 0.0625rem;
   color: $primary;
   margin-top: 0.25rem;
+}
+
+.timeline-points {
+  margin: 0.375rem 0 0;
+  padding-left: 1.1rem;
+
+  li {
+    font-size: 0.84rem;
+    line-height: 1.45em;
+    color: $primary;
+    margin-bottom: 0.2rem;
+
+    &::marker {
+      color: $info;
+    }
+  }
 }
 
 @media screen and (max-width: 768px) {

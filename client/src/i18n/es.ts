@@ -21,85 +21,126 @@ export default {
         date: "Jul 2026",
         title: "Graduado — Ingeniería de Software",
         subtitle: "Grado completado",
-        description:
-          "Terminé mi grado en Ingeniería de Software, sumando profundidad formal a años de desarrollar software en producción.",
+        points: [
+          "Coroné años de desarrollo de software en producción con fundamentos formales de ingeniería.",
+        ],
       },
-      ba: {
-        date: "2025 – Actualmente",
-        title: "British Airways",
+      globant: {
+        date: "Actualmente",
+        title: "Globant",
+        subtitle: "Ingeniero de Software · Proyecto Sentinel (Edenred)",
+        points: [
+          "Construyo Sentinel: plataforma de onboarding donde empresas que quieren trabajar con Edenred suben documentos para previsualización, visualización y análisis automatizado.",
+          "Flujos de verificación de seguridad: validación de firma legal más chequeos de antecedentes FBI, policía, CIA e Interpol.",
+          "Construido con .NET + React usando Arquitectura Hexagonal, Azure AI, contenedores y Kubernetes.",
+          "Colaboré en mejoras de SEO y rendimiento; desarrollo asistido por IA en el flujo diario.",
+        ],
+      },
+      britishCouncil: {
+        date: "2024 – 2025",
+        title: "British Council",
         subtitle: "Ingeniero de Software · Frontend (React/TypeScript)",
-        description:
-          "Construyo soluciones frontend escalables con React y TypeScript en un entorno bilingüe (EN/ES). Diseñé un proceso de resolución de incidentes entre los niveles L2 y L3 que duplicó la tasa de resolución exitosa. Monitoreo la salud de producción con dashboards (Datadog) y coordino el análisis de incidentes complejos.",
+        points: [
+          "Entregué funcionalidades escalables con React + TypeScript en un equipo totalmente bilingüe (EN/ES).",
+          "Diseñé un proceso de resolución de incidentes entre equipos L2 y L3, duplicando la tasa de resolución exitosa.",
+          "Monitoreé la salud de producción con dashboards (Datadog) y coordiné el análisis de incidentes complejos.",
+          "Mentoricé desarrolladores junior (practicantes de SENA).",
+        ],
       },
       helitours: {
         date: "Ago 2024 – Nov 2024",
         title: "Helitours · Freelance",
         subtitle: "Desarrollador Web Senior",
-        description:
-          "Lideré el frontend del nuevo sitio de la empresa, diseñando y personalizando temas con total responsividad entre dispositivos. Introduje prácticas estructuradas de Scrum y trabajé directo con stakeholders.",
+        points: [
+          "Lideré el frontend del nuevo sitio de la empresa en WordPress.",
+          "Diseñé y personalicé temas con compatibilidad responsiva entre dispositivos.",
+          "Introduje prácticas estructuradas de Scrum trabajando directo con stakeholders.",
+        ],
       },
       mha: {
         date: "Ago 2024 – Nov 2024",
         title: "Sistema de Monitoreo Hemodinámico (MHA)",
         subtitle: "Desarrollador Web Senior · HealthTech",
-        description:
-          "Diseñé un monolito modular con Node.js, React y TypeScript. Integré datos de dispositivos médicos (custo-30/custo-310) en visualizaciones en tiempo real, implementé control de acceso por roles, CRUD completo para usuarios/dispositivos/hospitales y reportes en PDF.",
+        points: [
+          "Diseñé un monolito modular con Node.js, React y TypeScript.",
+          "Integré datos de dispositivos médicos (custo-30/custo-310) en visualizaciones en tiempo real.",
+          "Implementé control de acceso por roles y CRUD completo para usuarios, dispositivos, hospitales y personal.",
+          "Desarrollé generación de PDF y reportes.",
+        ],
       },
       medellin: {
         date: "Ene 2024 – Ago 2024",
         title: "Medellín Joven",
         subtitle: "Desarrollador Web Senior",
-        description:
-          "Contribuí a una plataforma web escalable para jóvenes: diseñé la arquitectura frontend con Angular y TypeScript y mejoré el manejo de datos en backend con Node.js y PostgreSQL.",
+        points: [
+          "Diseñé la arquitectura frontend con Angular y TypeScript.",
+          "Mejoré el manejo de datos en backend con Node.js y PostgreSQL.",
+          "Entrega ágil para una plataforma escalable al servicio de jóvenes ciudadanos.",
+        ],
       },
       vass: {
         date: "Jul 2022 – Dic 2023",
         title: "VASS",
         subtitle: "Desarrollador V2 → V1 · Banca & Fintech",
-        description:
-          "Desarrollé INTERCAM (cumplimiento bancario), el sitio privado del banco MIFEL y CFG DANDO con Vue.js, TypeScript, Storybook y design systems custom para equipos internacionales multi-idioma.",
+        points: [
+          "Desarrollé INTERCAM, plataforma de cumplimiento bancario, con Vue.js + TypeScript.",
+          "Construí el sitio privado del banco MIFEL: tarjetas, chequeras, aclaraciones, movimientos y conectividad DIMO.",
+          "Desarrollé experiencias públicas y de onboarding para CFG DANDO.",
+          "Librería UI custom guiada por Storybook para equipos internacionales multi-idioma.",
+        ],
       },
       senaAnalyst: {
         date: "Abr 2020 – Jul 2022",
         title: "Graduado del SENA",
         subtitle: "Tecnólogo en Análisis y Desarrollo de Software",
-        description:
+        points: [
           "Título técnico enfocado en análisis de software, desarrollo y sistemas de información.",
+        ],
       },
       dolphin: {
         date: "Mar 2021 – Jun 2021",
         title: "Dolphin Ingeniería S.A.S",
         subtitle: "Desarrollador Web",
-        description:
-          "Desarrollé Kairos, una aplicación web .NET para gestionar proyectos PRIMAX en la industria de hidrocarburos, con JavaScript, TypeScript, CSS/Sass.",
+        points: [
+          "Desarrollé Kairos, app web .NET para gestionar proyectos PRIMAX en la industria de hidrocarburos.",
+          "Trabajo de frontend con JavaScript, TypeScript, CSS y Sass.",
+        ],
       },
       qoopa: {
         date: "Dic 2019 – Mar 2021",
         title: "Qoopa",
         subtitle: "Desarrollador de Sitios Web",
-        description:
-          "Implementé Scrum; construí componentes para una librería UI custom con React Native, Vue.js y Styled Components; entregué sitios interactivos con Laravel y JavaScript moderno.",
+        points: [
+          "Implementé la metodología Scrum en el equipo.",
+          "Creé componentes para una librería UI custom con React Native, Vue.js y Styled Components.",
+          "Construí sitios interactivos con Laravel y JavaScript moderno.",
+        ],
       },
       soul: {
         date: "Abr 2019 – Nov 2019",
         title: "Grupo Soul",
         subtitle: "Desarrollador de Sitios Web (Prácticas)",
-        description:
-          "Construí páginas web con HTML, CSS (Bootstrap 4), JavaScript, jQuery, PHP y AJAX.",
+        points: [
+          "Desarrollé páginas web con HTML, CSS (Bootstrap 4), JavaScript, jQuery, PHP y AJAX.",
+        ],
       },
       senaTech: {
         date: "Oct 2018 – Nov 2019",
         title: "Graduado del SENA",
         subtitle: "Técnico en Desarrollo de Software",
-        description:
+        points: [
           "Primer paso formal al desarrollo de software: fundamentos, tecnologías web y práctica de proyecto.",
+        ],
       },
       conex: {
         date: "Oct 2017 – Dic 2018",
         title: "Conex Travel",
         subtitle: "Desarrollador de Sitios Web (Medio tiempo)",
-        description:
-          "Construí UIs responsivas con React.js y Bootstrap, creé componentes reutilizables y optimicé proyectos reduciendo el peso de archivos y mejorando los tiempos de carga en un 20%.",
+        points: [
+          "Construí UIs responsivas con React.js y Bootstrap.",
+          "Creé componentes reutilizables entre proyectos.",
+          "Optimicé bundles reduciendo el peso de archivos y mejorando los tiempos de carga en un 20%.",
+        ],
       },
     },
   },
@@ -207,6 +248,7 @@ export default {
     success: "Proyecto creado exitosamente",
     failed: "No se pudo crear el proyecto. Inténtalo de nuevo.",
     errors: {
+      summary: "Corrige lo siguiente:",
       nameRequired: "El nombre del proyecto es obligatorio",
       descriptionRequired: "La descripción del proyecto es obligatoria",
       typeRequired: "El tipo de proyecto es obligatorio",
