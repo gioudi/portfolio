@@ -77,20 +77,26 @@ footer {
   background-color: $primary;
   color: $background;
   border-color: $primary;
-  min-height: 42px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  height: 42px;
+  line-height: 1;
+  padding-top: 0;
+  padding-bottom: 0;
+
+  .icon {
+    height: auto;
+    width: auto;
+    margin-right: 0.375rem;
+  }
 
   &:hover {
     color: $background;
   }
 
   &.is-small {
-    min-height: 42px;
     height: 42px;
     padding-left: 1rem;
     padding-right: 1rem;
+    font-size: 0.875rem;
   }
 }
 
@@ -137,6 +143,7 @@ footer {
 
 .label {
   color: $foreground;
+  margin-bottom: 0.35rem;
 }
 
 .multiselect__tags {
