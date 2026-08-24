@@ -17,7 +17,7 @@
                   <label class="label" for="username">{{
                     t("login.username")
                   }}</label>
-                  <div class="control has-icons-left">
+                  <div class="control">
                     <Field
                       id="username"
                       name="username"
@@ -26,9 +26,6 @@
                       type="text"
                       autocomplete="username"
                     />
-                    <span class="icon is-small is-left">
-                      <i class="fas fa-user"></i>
-                    </span>
                   </div>
                   <ErrorMessage name="username" class="help is-danger" />
                 </div>
@@ -37,7 +34,7 @@
                   <label class="label" for="password">{{
                     t("login.password")
                   }}</label>
-                  <div class="control has-icons-left">
+                  <div class="control">
                     <Field
                       id="password"
                       name="password"
@@ -46,9 +43,6 @@
                       type="password"
                       autocomplete="current-password"
                     />
-                    <span class="icon is-small is-left">
-                      <i class="fas fa-lock"></i>
-                    </span>
                   </div>
                   <ErrorMessage name="password" class="help is-danger" />
                 </div>
