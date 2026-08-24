@@ -43,9 +43,9 @@ body {
 }
 
 header {
-  background-color: $primary;
+  background-color: transparent;
   color: $foreground;
-  padding: 20px;
+  padding: 20px 0;
 }
 
 .navbar {
@@ -107,7 +107,7 @@ a {
     }
     .container-image__background--image {
       filter: blur(.0938rem);
-      transform: scale(1);
+      transform: scale(1.06);
     }
   }
   &__background {
@@ -131,9 +131,9 @@ a {
     &--image {
       z-index: 0;
       width: 100%;
-      object-fit: contain;
+      object-fit: cover;
       height: 9.375rem;
-      transform: scale(1.2);
+      transform: scale(1);
       transition: all 0.3s;
     }
   }
