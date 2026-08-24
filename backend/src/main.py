@@ -1,6 +1,6 @@
 import os
 import bcrypt
-from flask import Blueprint, Flask
+from flask import Blueprint, Flask, jsonify
 from models.project_types import ProjectType
 from models.user import User
 from models.projects import Project
@@ -48,6 +48,15 @@ def create_default_project_types():
            session.add(project_type)
            session.commit()
 
+
+def run_bootstrap():
+    """Create schema and seed baseline rows. Idempotent; safe to re-run."""
+    Base.metadata.create_all(engine)
+    create_default_user()
+    create_default_project_types()
+    print("[BOOTSTRAP] Database schema and seed data ready")
+
+
 app = Flask(__name__)
 
 ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:8080").split(",")
@@ -74,6 +83,14 @@ app.register_blueprint(project_blueprint)
 app.register_blueprint(types_project_blueprint)
 
 
+@app.get("/health")
+def health():
+    return jsonify({
+        "status": "ok",
+        "db": engine.url.drivername.split("+")[0],
+    })
+
+
 @app.after_request
 def add_security_headers(response):
     response.headers['X-Content-Type-Options'] = 'nosniff'
@@ -85,16 +102,13 @@ def add_security_headers(response):
     return response
 
 
+# Bootstrap runs for direct `python src/main.py` execution and, behind the
+# RUN_BOOTSTRAP flag, under WSGI servers (gunicorn) that merely import this module.
+if os.getenv("RUN_BOOTSTRAP", "false").lower() == "true":
+    run_bootstrap()
+
 if __name__ == '__main__':
-
-    #Create tables
-    Base.metadata.create_all(engine)
-
-    #Create user
-    create_default_user()
-
-    #Create project types
-    create_default_project_types()
+    run_bootstrap()
 
     DEBUG = os.getenv("FLASK_DEBUG", "false").lower() == "true"
     app.run(debug=DEBUG)

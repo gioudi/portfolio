@@ -20,3 +20,18 @@ class Project(Base):
     project_type = relationship("ProjectType")
     images = relationship("Image", back_populates="project")
     videos = relationship("Video", back_populates="project")
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "description": self.description,
+            "project_type_id": self.project_type_id,
+            "link": self.link,
+            "technologies": self.technologies or [],
+            "tags": self.tags or [],
+            "responsibilities": self.responsibilities,
+            "user_id": self.user_id,
+            "images": [{"id": img.id, "url": img.url} for img in self.images],
+            "videos": [{"id": vid.id, "url": vid.url} for vid in self.videos],
+        }

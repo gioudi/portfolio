@@ -1,0 +1,39 @@
+# Render Blueprint — https://render.com/docs/blueprint-spec
+# Deploy: New + → Blueprint → select this repo.
+# Set env vars in the dashboard (secrets never live here).
+services:
+  - type: web
+    name: portfolio-api
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: RUN_BOOTSTRAP
+        value: "true"
+      - key: ALLOWED_ORIGINS
+        value: https://gioudi.github.io
+      - key: POSTGRES_HOST
+        sync: false
+      - key: POSTGRES_PORT
+        sync: false
+      - key: POSTGRES_DB
+        sync: false
+      - key: POSTGRES_USER
+        sync: false
+      - key: POSTGRES_PASSWORD
+        sync: false
+      - key: SECRET_API_KEY
+        sync: false
+      - key: DEFAULT_USER
+        sync: false
+      - key: DEFAULT_EMAIL
+        sync: false
+      - key: DEFAULT_PASSWORD
+        sync: false
+      - key: CLOUDINARY_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false

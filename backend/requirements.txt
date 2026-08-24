@@ -7,3 +7,4 @@ PyJWT==2.8.0
 python-dotenv==1.0.0
 cloudinary==1.36.0
 pg8000==1.30.3
+gunicorn==21.2.0
