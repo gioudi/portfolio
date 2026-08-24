@@ -3,11 +3,9 @@
     <h2 class="title is-2 has-text-centered">
       {{ t("projects.recentHeading") }}
     </h2>
-    <div
-      class="columns is-variable is-1-mobile is-0-tablet is-3-desktop is-multiline mb-5"
-    >
+    <div class="projects-grid">
       <article
-        class="column is-half-tablet is-one-quarter-desktop"
+        class="project-cell"
         v-for="project in projects"
         :key="project.id"
       >
@@ -40,11 +38,9 @@
     <h2 class="title is-2 has-text-centered">
       {{ t("projects.otherHeading") }}
     </h2>
-    <div
-      class="columns is-variable is-1-mobile is-0-tablet is-3-desktop is-multiline"
-    >
+    <div class="projects-grid">
       <article
-        class="column is-half-tablet is-one-quarter-desktop"
+        class="project-cell"
         v-for="project in otherProjects"
         :key="project.title"
       >
@@ -110,6 +106,23 @@ const viewProjectDetails = (id: string) => {
 </script>
 
 <style lang="scss" scoped>
+.projects-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.project-cell {
+  flex: 0 0 calc(50% - 0.5rem);
+  display: flex;
+
+  @media screen and (min-width: 1024px) {
+    flex-basis: calc(25% - 0.75rem);
+  }
+}
+
 .description {
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -117,7 +130,7 @@ const viewProjectDetails = (id: string) => {
   overflow: hidden;
 }
 
-.column > .card {
+.project-cell > .card {
   display: flex;
   flex-direction: column;
   height: 100%;
