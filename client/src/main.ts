@@ -3,6 +3,8 @@ import App from "./App.vue";
 import router from "./router";
 import { createPinia } from "pinia";
 import { createI18n } from "vue-i18n";
+import en from "./i18n/en";
+import es from "./i18n/es";
 import "./styles/main.scss";
 
 import { register } from "register-service-worker";
@@ -11,26 +13,13 @@ const app = createApp(App);
 
 app.use(router);
 
+const savedLocale = localStorage.getItem("locale");
+
 const i18n = createI18n({
-  locale: "en",
+  locale: savedLocale === "es" ? "es" : "en",
+  fallbackLocale: "en",
   allowComposition: true,
-  messages: {
-    en: {
-      footer: {
-        name: "Sergio Penagos",
-      },
-    },
-    es: {
-      footer: {
-        name: "Sergio Penagos",
-      },
-    },
-    de: {
-      footer: {
-        name: "Sergio Penagos",
-      },
-    },
-  },
+  messages: { en, es },
 });
 
 app.use(i18n);
