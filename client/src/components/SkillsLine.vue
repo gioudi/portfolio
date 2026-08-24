@@ -3,11 +3,11 @@
     <h2 id="skills" class="title is-2 has-text-centered">
       {{ t("skills.heading") }}
     </h2>
-    <div class="columns is-multiline is-mobile">
+    <div class="columns is-multiline is-variable is-2">
       <div
         v-for="group in skillGroups"
         :key="group.titleKey"
-        class="skills-section column is-half-mobile is-3-tablet is-3-desktop"
+        class="skills-section column is-half-mobile is-3"
         data-aos="fade-up"
       >
         <h3 class="subtitle is-4">{{ t(group.titleKey) }}</h3>
@@ -85,6 +85,10 @@ const skillGroups = [
 <style lang="scss">
 .skill-row {
   margin-bottom: 0.6rem;
+}
+
+.skills-section {
+  min-width: 0;
 }
 
 .container-icon {
