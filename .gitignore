@@ -23,7 +23,7 @@ Thumbs.db
 *.log
 
 # Build
-dist/
+#dist/  # tracked on purpose: client/dist is deployed via GitHub Pages
 build/
 *.egg-info/
 *.db
