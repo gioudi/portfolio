@@ -16,12 +16,20 @@ SQLITE_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "po
 
 _base_engine = None
 
+_pg_url = f"postgresql+pg8000://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
+if os.getenv("POSTGRES_SSL", "false").lower() == "true":
+    # Managed Postgres providers (e.g. Neon) reject non-TLS connections.
+    _pg_url += "?sslmode=require"
+
 try:
-    _pg_url = f"postgresql+pg8000://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
     _base_engine = create_engine(_pg_url)
     _base_engine.connect()
     print("[DB] Connected to PostgreSQL")
 except Exception as e:
+    if os.getenv("ALLOW_DB_FALLBACK", "true").lower() != "true":
+        # In production a silent SQLite fallback means invisible data loss;
+        # fail loudly instead of booting against a throwaway file.
+        raise RuntimeError(f"[DB] PostgreSQL unavailable and fallback disabled: {e}") from e
     print(f"[DB] PostgreSQL unavailable ({e}), falling back to SQLite")
     _base_engine = create_engine(f"sqlite:///{SQLITE_PATH}")
 
