@@ -8,18 +8,19 @@
 </template>
 
 <script setup>
+import { computed } from "vue";
 import { useI18n } from "vue-i18n";
-import { usePinia } from "pinia";
+import { useLanguageStore } from "../store/language";
 
-const pinia = usePinia();
 const i18n = useI18n();
+const languageStore = useLanguageStore();
 
-const currentLanguage = pinia.state.language.currentLanguage;
+const currentLanguage = computed(() => languageStore.currentLanguage);
 
 const toggleLanguage = () => {
-  const newLanguage = currentLanguage === "en" ? "es" : "en";
-  pinia.state.language.setCurrentLanguage(newLanguage);
-  i18n.global.locale = newLanguage;
+  const newLanguage = currentLanguage.value === "en" ? "es" : "en";
+  languageStore.setCurrentLanguage(newLanguage);
+  i18n.locale.value = newLanguage;
 };
 </script>
 

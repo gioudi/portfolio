@@ -165,12 +165,16 @@ const events = [
 }
 
 @media screen and (max-width: 768px) {
-  .container:before {
+  .timeline:before {
     left: 0.5rem;
+    margin-left: 0;
   }
   .timeline-block {
     width: 100%;
     margin-bottom: 1.875rem;
+  }
+  .marker {
+    margin-right: 0.5rem;
   }
   .timeline-block-right {
     float: none;

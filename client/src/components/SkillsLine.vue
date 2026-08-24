@@ -97,7 +97,7 @@ const tools = [
 
 <style lang="scss">
 .container-icon {
-  filter: grayscale(100);
+  filter: grayscale(100%);
   transition: all 0.3s ease-in-out;
 
   &:hover {
