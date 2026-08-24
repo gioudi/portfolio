@@ -87,7 +87,6 @@ const skillGroups = [
   margin-bottom: 0.6rem;
 }
 
-<style lang="scss">
 .skills-grid {
   display: flex;
   flex-wrap: wrap;
