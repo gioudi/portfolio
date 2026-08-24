@@ -1,0 +1,10 @@
+Flask==3.0.0
+Flask-CORS==4.0.0
+flask-limiter==4.1.1
+SQLAlchemy==2.0.36
+bcrypt==4.1.2
+PyJWT==2.8.0
+python-dotenv==1.0.0
+cloudinary==1.36.0
+pg8000==1.30.3
+gunicorn==21.2.0

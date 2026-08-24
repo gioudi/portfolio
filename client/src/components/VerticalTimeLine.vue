@@ -1,120 +1,156 @@
 <template>
-  <h2 class="title is-2 has-text-centered" data-aos="fade-right">About me</h2>
-  <div class="container timeline">
-    <div
-      v-for="(event, index) in events"
-      :key="index"
-      class="timeline-block"
-      :class="{
-        'timeline-block-right': index % 2 !== 0,
-        'timeline-block-left': index % 2 === 0,
-      }"
-    >
-      <div class="marker"></div>
-      <div class="timeline-content" v-if="index % 2 !== 0" data-aos="fade-left">
-        <i :class="event.icon"></i>
-        <h5>
-          {{ event.title }} <small>{{ event.date }}</small>
-        </h5>
-        <span>{{ event.subtitle }}</span>
-        <p>{{ event.description }}</p>
-      </div>
-      <div class="timeline-content" v-else data-aos="fade-right">
-        <i :class="event.icon"></i>
-        <h5>
-          {{ event.title }} <small>{{ event.date }}</small>
-        </h5>
-        <span>{{ event.subtitle }}</span>
-        <p>{{ event.description }}</p>
+  <h2
+    id="about"
+    class="title is-2 has-text-centered mb-2"
+    data-aos="fade-right"
+  >
+    {{ t("timeline.heading") }}
+  </h2>
+  <p class="has-text-centered timeline-hint mb-3">
+    <span class="icon is-small mr-1"><i class="fas fa-arrows-alt-v"></i></span>
+    {{ t("timeline.scrollHint") }}
+  </p>
+  <section class="container timeline-wrap">
+    <div class="timeline-scroll">
+      <div class="timeline">
+        <article
+          v-for="(key, index) in eventKeys"
+          :key="key"
+          class="timeline-block"
+          :class="{
+            'timeline-block-right': index % 2 !== 0,
+            'timeline-block-left': index % 2 === 0,
+          }"
+        >
+          <div class="marker"></div>
+          <div class="timeline-content" data-aos="fade-up">
+            <i :class="eventIcon(key)"></i>
+            <p class="has-text-weight-bold">
+              {{ t(`timeline.events.${key}.title`) }}
+              <small>{{ t(`timeline.events.${key}.date`) }}</small>
+            </p>
+            <span>{{ t(`timeline.events.${key}.subtitle`) }}</span>
+            <ul class="timeline-points">
+              <li v-for="(point, i) in pointsFor(key)" :key="i">
+                {{ point }}
+              </li>
+            </ul>
+          </div>
+        </article>
       </div>
     </div>
-  </div>
+    <div class="timeline-fade" aria-hidden="true"></div>
+  </section>
 </template>
 
 <script setup lang="ts">
-const events = [
-  {
-    date: "Jan2024 - Currently",
-    title: "Star pursuing a degree",
-    subtitle: "Degree: Informatic Engineering",
-    description: "",
-    icon: "fas fa-graduation-cap",
-  },
-  {
-    date: "Au2021 - Jan/2024",
-    title: "Worked at Vass",
-    subtitle: "Position: Web Developer",
-    description: "",
-    icon: "fas fa-briefcase",
-  },
-  {
-    date: "Abr/2020 - Jul/2022",
-    title: "Graduated from Sena",
-    subtitle: "Associate's Degree: Technologist Analysis of Information System",
-    description: "",
-    icon: "fas fa-graduation-cap",
-  },
-  {
-    date: "Dec/2019 - Mar/2021",
-    title: "Worked at Intevo",
-    subtitle: "Position: Web Developer",
-    description: "",
-    icon: "fas fa-briefcase",
-  },
-  {
-    date: "Apr/2019 - Nov/2019",
-    title: "Worked at Soulmedical",
-    subtitle: "Position: Web Developer",
-    description: "",
-    icon: "fas fa-briefcase",
-  },
-  {
-    date: "Oct/2018 - Nov/2019",
-    title: "Graduated from Sena",
-    subtitle: "Associate's Degree: Technical Software Developer",
-    description: "",
-    icon: "fas fa-graduation-cap",
-  },
-  {
-    date: "Oct/2017 - Dec/2018",
-    title: "Worked at ConexTravel",
-    subtitle: "Position: Web Developer",
-    description: "",
-    icon: "fas fa-briefcase",
-  },
+import { useI18n } from "vue-i18n";
+
+const { t, tm } = useI18n();
+
+const eventIcons: Record<string, string> = {
+  degree2026: "fas fa-graduation-cap",
+  globant: "fas fa-building",
+  britishCouncil: "fas fa-university",
+  helitours: "fas fa-helicopter",
+  mha: "fas fa-heartbeat",
+  medellin: "fas fa-city",
+  vass: "fas fa-briefcase",
+  senaAnalyst: "fas fa-graduation-cap",
+  dolphin: "fas fa-oil-can",
+  qoopa: "fas fa-mobile-alt",
+  soul: "fas fa-laptop-code",
+  senaTech: "fas fa-graduation-cap",
+  conex: "fas fa-globe-americas",
+};
+
+const eventKeys = [
+  "degree2026",
+  "globant",
+  "britishCouncil",
+  "helitours",
+  "mha",
+  "medellin",
+  "vass",
+  "senaAnalyst",
+  "dolphin",
+  "qoopa",
+  "soul",
+  "senaTech",
+  "conex",
 ];
+
+const pointsFor = (key: string): string[] => {
+  const nodes = tm(`timeline.events.${key}.points`) as unknown[];
+  return nodes.map((node) => String(node));
+};
+
+const eventIcon = (key: string) => eventIcons[key] ?? "fas fa-circle";
 </script>
 
 <style lang="scss">
 @import "../styles/variables";
 
-.timeline {
+.timeline-wrap {
   width: 80%;
-  padding: 3.125rem 0;
-  margin: 3.125rem auto;
+  margin: 0 auto;
   position: relative;
-  overflow: hidden;
 }
 
-.timeline:before {
-  content: "";
+.timeline-scroll {
+  max-height: 32rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(51, 51, 51, 0.35) transparent;
+  mask-image: linear-gradient(to bottom, black 82%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 82%, transparent 100%);
+  padding-bottom: 4rem;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(51, 51, 51, 0.35);
+    border-radius: 3px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+.timeline-fade {
   position: absolute;
-  top: 0;
-  left: 50%;
-  margin-left: -0.0625rem;
-  height: 100%;
-  border: 0.0625rem dashed $info;
-  z-index: 1;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4.5rem;
+  background: linear-gradient(to bottom, rgba(242, 242, 242, 0), #f2f2f2 85%);
+  pointer-events: none;
+}
+
+.timeline {
+  width: 100%;
+  padding: 1.5rem 0;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -0.0625rem;
+    height: 100%;
+    border: 0.0625rem dashed $info;
+    z-index: 1;
+  }
 }
 
 .timeline-block {
-  width: -webkit-calc(50% + 0.5rem);
-  width: -moz-calc(50% + 0.5rem);
   width: calc(50% + 0.5rem);
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -moz-box-pack: justify;
   justify-content: space-between;
   clear: both;
 }
@@ -136,20 +172,18 @@ const events = [
   background: $primary;
   margin-top: 0.625rem;
   z-index: 9999;
+  flex-shrink: 0;
 }
 
 .timeline-content {
   width: 95%;
-  padding: 0 0.9375rem;
+  padding: 0.25rem 0.9375rem;
   color: $primary;
-}
 
-.timeline-content h3 {
-  margin-top: 0.3125rem;
-  margin-bottom: 0.3125rem;
-  font-size: 1.5625rem;
-  font-weight: 500;
-  color: $primary;
+  i {
+    color: $info;
+    margin-right: 0.375rem;
+  }
 }
 
 .timeline-content span {
@@ -162,20 +196,44 @@ const events = [
   line-height: 1.5em;
   word-spacing: 0.0625rem;
   color: $primary;
+  margin-top: 0.25rem;
+}
+
+.timeline-points {
+  margin: 0.375rem 0 0;
+  padding-left: 1.1rem;
+
+  li {
+    font-size: 0.84rem;
+    line-height: 1.45em;
+    color: $primary;
+    margin-bottom: 0.2rem;
+
+    &::marker {
+      color: $info;
+    }
+  }
 }
 
 @media screen and (max-width: 768px) {
-  .container:before {
+  .timeline-wrap {
+    width: 100%;
+    padding-left: 0.75rem;
+  }
+  .timeline:before {
     left: 0.5rem;
+    margin-left: 0;
   }
   .timeline-block {
     width: 100%;
-    margin-bottom: 1.875rem;
+    margin-bottom: 1.25rem;
+  }
+  .marker {
+    margin-right: 0.5rem;
   }
   .timeline-block-right {
     float: none;
   }
-
   .timeline-block-left {
     float: none;
     direction: ltr;

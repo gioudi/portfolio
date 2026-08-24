@@ -1,7 +1,33 @@
 @import './variables';
 
+@import 'bulma/sass/utilities/initial-variables';
+@import 'bulma/sass/utilities/functions';
+@import 'bulma/sass/utilities/derived-variables';
+@import 'bulma/sass/utilities/mixins';
+@import 'bulma/sass/utilities/controls';
+@import 'bulma/sass/utilities/animations';
+@import 'bulma/sass/utilities/extends';
 
-@import 'bulma/bulma';
+@import 'bulma/sass/elements/box';
+@import 'bulma/sass/elements/button';
+@import 'bulma/sass/elements/container';
+@import 'bulma/sass/elements/form';
+@import 'bulma/sass/elements/title';
+
+@import 'bulma/sass/components/card';
+@import 'bulma/sass/components/dropdown';
+@import 'bulma/sass/components/modal';
+@import 'bulma/sass/components/navbar';
+@import 'bulma/sass/components/panel';
+
+@import 'bulma/sass/grid/columns';
+@import 'bulma/sass/grid/tiles';
+
+@import 'bulma/sass/helpers/color';
+@import 'bulma/sass/helpers/flexbox';
+@import 'bulma/sass/helpers/spacing';
+@import 'bulma/sass/helpers/typography';
+@import 'bulma/sass/helpers/visibility';
 
 body {
   font-family: 'Lato', sans-serif;
@@ -14,12 +40,16 @@ body {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+
+  @media screen and (min-width: 1408px) {
+    max-width: 1400px;
+  }
 }
 
 header {
-  background-color: $primary;
+  background-color: transparent;
   color: $foreground;
-  padding: 20px;
+  padding: 20px 0;
 }
 
 .navbar {
@@ -44,17 +74,140 @@ footer {
 
 
 .button {
-  background-color: $primary; 
+  background-color: $primary;
   color: $background;
   border-color: $primary;
+  height: 42px;
+  line-height: 1;
+  padding-top: 0;
+  padding-bottom: 0;
+
+  .icon {
+    height: auto;
+    width: auto;
+    margin-right: 0.375rem;
+  }
+
   &:hover {
     color: $background;
   }
+
+  &.is-small {
+    height: 42px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 0.875rem;
+  }
 }
 
-.input {
-  background-color: $background;
+.input,
+.select select {
+  width: 100%;
+  height: 40px;
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: #fff;
   color: $foreground;
+  border: 1px solid rgba(51, 51, 51, 0.28);
+  border-radius: 4px;
+  box-shadow: none;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+  &::placeholder {
+    color: rgba(51, 51, 51, 0.4);
+  }
+
+  &:hover {
+    border-color: rgba(51, 51, 51, 0.45);
+  }
+
+  &:focus,
+  &:focus-visible {
+    border-color: $primary;
+    box-shadow: 0 0 0 0.125rem rgba(51, 51, 51, 0.15);
+  }
+
+  &.is-danger {
+    border-color: $form-error;
+
+    &:focus {
+      border-color: $form-error;
+      box-shadow: 0 0 0 0.125rem rgba(214, 69, 69, 0.18);
+    }
+  }
+}
+
+.help.is-danger,
+.has-text-danger {
+  color: $form-error !important;
+}
+
+.field .label {
+  display: block;
+  color: $foreground;
+  margin-bottom: 0.4rem;
+}
+
+.textarea {
+  min-height: 40px;
+}
+
+.multiselect__tags {
+  border: 1px solid rgba(51, 51, 51, 0.28);
+  border-radius: 4px;
+  background-color: #fff;
+  min-height: 40px;
+  padding-top: 0.45rem;
+  width: 100%;
+  transition: border-color 0.2s ease-in-out;
+
+  .multiselect__single {
+    line-height: 1.4;
+    margin-bottom: 0;
+  }
+
+  &:hover {
+    border-color: rgba(51, 51, 51, 0.45);
+  }
+}
+
+.form-error-card {
+  width: 100%;
+  background-color: #fdecec;
+  border: 1px solid $form-error;
+  border-left: 4px solid $form-error;
+  border-radius: 4px;
+  color: #7a1f1f;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+
+  &__title {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    list-style-type: disc;
+  }
+
+  li,
+  p {
+    margin-bottom: 0.15rem;
+  }
+}
+
+.multiselect--active .multiselect__tags {
+  border-color: $primary;
+  box-shadow: 0 0 0 0.125rem rgba(51, 51, 51, 0.15);
+}
+
+.filepond--root {
+  margin-bottom: 0;
 }
 
 a {
@@ -68,7 +221,7 @@ a {
 
 .container-image {
   border-radius: 0.250rem;
-  max-width: 18.75rem;
+  max-width: none;
   overflow: hidden;
   height: auto;
   @media screen and (min-width: 1140px) {
@@ -81,7 +234,7 @@ a {
     }
     .container-image__background--image {
       filter: blur(.0938rem);
-      transform: scale(1);
+      transform: scale(1.06);
     }
   }
   &__background {
@@ -105,9 +258,9 @@ a {
     &--image {
       z-index: 0;
       width: 100%;
-      object-fit: contain;
+      object-fit: cover;
       height: 9.375rem;
-      transform: scale(1.2);
+      transform: scale(1);
       transition: all 0.3s;
     }
   }
@@ -116,5 +269,3 @@ a {
 .hv-100 {
   min-height: 100vh;
 }
-
-

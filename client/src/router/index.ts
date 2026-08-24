@@ -1,36 +1,57 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import HomeView from "../views/HomeView.vue";
-import ProjectDetailView from "../views/ProjectDetailView.vue";
-import LoginView from "@/views/LoginView.vue";
-import CreateProjectView from "@/views/CreateProjectView.vue";
 import { useAuthStore } from "@/store/auth";
+
+const BASE_TITLE = "Sergio Penagos — Software Engineer | Portfolio";
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "home",
-    component: HomeView,
+    component: () => import("../views/HomeView.vue"),
+    meta: {
+      title: BASE_TITLE,
+      description:
+        "Software Engineer specializing in scalable web applications, design systems, and component-driven development. View my projects, skills, and experience.",
+    },
   },
   {
     path: "/login",
     name: "login",
-    component: LoginView,
+    component: () => import("@/views/LoginView.vue"),
+    meta: {
+      title: `Login — ${BASE_TITLE}`,
+      description: "Login to manage portfolio projects.",
+      requiresAuth: false,
+    },
   },
   {
     path: "/project/:id",
     name: "projectDetail",
-    component: ProjectDetailView,
+    component: () => import("../views/ProjectDetailView.vue"),
+    meta: {
+      title: `Project — ${BASE_TITLE}`,
+      description:
+        "Detailed view of a portfolio project — technologies, responsibilities, and evidence.",
+    },
   },
   {
     path: "/create-project",
     name: "createProject",
-    component: CreateProjectView,
-    meta: { requiresAuth: true },
+    component: () => import("@/views/CreateProjectView.vue"),
+    meta: {
+      title: `Create Project — ${BASE_TITLE}`,
+      description: "Create a new portfolio project.",
+      requiresAuth: true,
+    },
   },
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+  scrollBehavior() {
+    return { top: 0 };
+  },
 });
 
 router.beforeEach((to, from, next) => {
@@ -38,8 +59,14 @@ router.beforeEach((to, from, next) => {
 
   if (to.meta.requiresAuth && !authStore.loggedIn) {
     next("/login");
+  } else if (to.name === "login" && authStore.loggedIn) {
+    next("/create-project");
   } else {
     next();
+  }
+
+  if (to.meta.title) {
+    document.title = to.meta.title as string;
   }
 });
 
