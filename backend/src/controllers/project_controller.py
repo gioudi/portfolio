@@ -4,6 +4,7 @@ from repositories.project_repository import ProjectRepository
 from models.database import Session
 from utils.auth_decorator import token_required
 from utils.validators import validate_required_fields, validate_string_length, validate_url, sanitize_dict
+from utils.cloudinary_helper import upload_stream_to_cloudinary
 
 session = Session()
 
@@ -14,10 +15,51 @@ project_service = ProjectService(project_repository)
 STRING_FIELDS = ['name', 'description', 'link', 'responsibilities']
 
 
+def _parse_multipart_payload():
+    """The admin form posts multipart/form-data (FilePond files attached).
+
+    Text fields arrive in request.form; images/video as file streams that we
+    push straight to Cloudinary and convert into the same shape as JSON calls.
+    """
+    data = {
+        "name": request.form.get("name", ""),
+        "description": request.form.get("description", ""),
+        "link": request.form.get("link", ""),
+        "responsibilities": request.form.get("responsibilities", ""),
+        "technologies": [t for t in request.form.getlist("technologies") if t],
+        "tags": [t for t in request.form.getlist("tags") if t],
+        "images": [],
+        "videos": [],
+    }
+
+    raw_type = request.form.get("project_type_id", "")
+    try:
+        data["project_type_id"] = int(raw_type)
+    except (TypeError, ValueError):
+        data["project_type_id"] = raw_type
+
+    for image_file in request.files.getlist("images"):
+        url = upload_stream_to_cloudinary(image_file.stream)
+        if url:
+            data["images"].append({"url": url})
+
+    video_file = request.files.get("video")
+    if video_file:
+        url = upload_stream_to_cloudinary(video_file.stream, resource_type="video")
+        if url:
+            data["videos"].append({"url": url})
+
+    return data
+
+
 @token_required
 def create_project(user_id):
 
-    data = request.get_json()
+    is_json = bool(request.content_type) and "application/json" in request.content_type
+    data = request.get_json(silent=True) if is_json else _parse_multipart_payload()
+
+    if not isinstance(data, dict):
+        return jsonify({"message": "Invalid request body"}), 400
 
     valid, error = validate_required_fields(data, ['name', 'link', 'project_type_id', 'technologies', 'tags'])
     if not valid:
@@ -70,7 +112,10 @@ def create_project(user_id):
                 return jsonify({"message": error}), 400
 
     data['user_id'] = user_id
-    project = project_service.create_project(data)
+    try:
+        project = project_service.create_project(data)
+    except ValueError as exc:
+        return jsonify({"message": str(exc)}), 400
     return jsonify({"message": "Project created successfully", "project": project.to_dict()}), 201
 
 def get_projects():
